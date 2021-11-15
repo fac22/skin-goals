@@ -2,6 +2,9 @@ import React from 'react';
 
 import {
   IonContent,
+  IonGrid,
+  IonRow,
+  IonCol,
   IonHeader,
   IonPage,
   IonTitle,
@@ -15,16 +18,33 @@ const Tab3 = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Tab 3</IonTitle>
+          <IonTitle>My Products</IonTitle>
         </IonToolbar>
       </IonHeader>
+
       <IonContent fullscreen>
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large">Tab 3</IonTitle>
+            <IonTitle size="large">My Products</IonTitle>
           </IonToolbar>
         </IonHeader>
         <ExploreContainer name="Tab 3 page" />
+
+        <IonGrid>
+          <IonRow>
+            <IonCol >Retinol</IonCol>
+            <IonCol>Salicylic Acid</IonCol>
+            <IonCol>Vitamin C</IonCol>
+            <IonCol>Hyaluronic Acid</IonCol>
+            <IonCol >Retinol</IonCol>
+            <IonCol>Salicylic Acid</IonCol>
+            <IonCol>Vitamin C</IonCol>
+            <IonCol>Hyaluronic Acid</IonCol>
+            <IonCol>Salicylic Acid</IonCol>
+            <IonCol>Vitamin C</IonCol>
+            <IonCol>Hyaluronic Acid</IonCol>
+          </IonRow>
+        </IonGrid>
       </IonContent>
     </IonPage>
   );
