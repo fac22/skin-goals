@@ -28,21 +28,24 @@ const Tab3 = () => {
             <IonTitle size="large">My Products</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <ExploreContainer name="Tab 3 page" />
+        {/* <ExploreContainer name="Tab 3 page" /> */}
 
         <IonGrid>
           <IonRow>
-            <IonCol >Retinol</IonCol>
-            <IonCol>Salicylic Acid</IonCol>
-            <IonCol>Vitamin C</IonCol>
-            <IonCol>Hyaluronic Acid</IonCol>
-            <IonCol >Retinol</IonCol>
-            <IonCol>Salicylic Acid</IonCol>
-            <IonCol>Vitamin C</IonCol>
-            <IonCol>Hyaluronic Acid</IonCol>
-            <IonCol>Salicylic Acid</IonCol>
-            <IonCol>Vitamin C</IonCol>
-            <IonCol>Hyaluronic Acid</IonCol>
+            <IonCol>
+              <div className='grid-elem'>element 1</div>
+            </IonCol>
+            <IonCol>
+              <div className='grid-elem'>element 2</div>
+            </IonCol>
+            <IonCol>
+              <div className='grid-elem'>element 3</div>
+            </IonCol>
+            <IonCol>
+              <div className='grid-elem'>element 4</div>
+            </IonCol>
+            
+            
           </IonRow>
         </IonGrid>
       </IonContent>
