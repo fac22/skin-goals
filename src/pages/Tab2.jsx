@@ -6,9 +6,23 @@ import {
   IonPage,
   IonTitle,
   IonToolbar,
+  IonItem,
+  IonLabel,
+  IonReorder,
+  IonReorderGroup,
 } from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
 import './Tab2.css';
+
+const items = ['Cleanser', 'Toner', 'Moisturiser'];
+
+function doReorder(event) {
+  console.log('items before: ', items);
+  console.log('Dragged from index', event.detail.from, 'to', event.detail.to);
+  const movingItem = items.splice(event.detail.from, 1);
+  items.splice(event.detail.to, 0, movingItem[0]);
+  event.detail.complete();
+  console.log('items after: ', items);
+}
 
 const Tab2 = () => {
   return (
@@ -21,10 +35,24 @@ const Tab2 = () => {
       <IonContent fullscreen>
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large">Tab 2</IonTitle>
+            <IonTitle size="large">Routines</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <ExploreContainer name="Tab 2 page" />
+
+        <IonReorderGroup disabled={false} onIonItemReorder={doReorder}>
+          <IonItem>
+            <IonLabel>Cleanser</IonLabel>
+            <IonReorder slot="end" />
+          </IonItem>
+          <IonItem>
+            <IonLabel>Toner</IonLabel>
+            <IonReorder slot="end" />
+          </IonItem>
+          <IonItem>
+            <IonLabel>Moisturiser</IonLabel>
+            <IonReorder slot="end" />
+          </IonItem>
+        </IonReorderGroup>
       </IonContent>
     </IonPage>
   );
