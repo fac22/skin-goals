@@ -15,7 +15,7 @@ const Tab2 = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Tab 2</IonTitle>
+          <IonTitle>Routines</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
