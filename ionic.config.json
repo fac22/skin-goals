@@ -1,0 +1,7 @@
+{
+  "name": "SkinGoals",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
