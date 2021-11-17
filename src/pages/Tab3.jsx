@@ -32,6 +32,14 @@ const creams = [
 
 const Tab3 = () => {
   const [text, setText] = useState('');
+  const [creams, setCreams] = useState([
+    'Retinol',
+    'Salicylic Acid',
+    'Vitamin C',
+    'Hyaluronic Acid',
+    'SPF',
+    'hello',
+  ]);
 
   return (
     <IonPage>
@@ -73,7 +81,9 @@ const Tab3 = () => {
           className="add-btn"
           onClick={(e) => {
             e.preventDefault();
-            creams.push(text);
+            setCreams([...creams, text]);
+            setText('');
+            // creams.push(text);
             console.log(creams);
           }}
         >
