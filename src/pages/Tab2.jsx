@@ -6,25 +6,73 @@ import {
   IonPage,
   IonTitle,
   IonToolbar,
+  IonItem,
+  IonLabel,
+  IonReorder,
+  IonReorderGroup,
+  IonSlides,
+  IonSlide,
 } from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
 import './Tab2.css';
+
+const slideOpts = {
+  initialSlide: 1,
+  speed: 400,
+};
+
+const items = ['Cleanser', 'Toner', 'Moisturiser'];
+
+console.log(items);
+
+function doReorder(event) {
+  console.log(event.detail.from, event.detail.to);
+  const movingItem = items.splice(event.detail.from, 1);
+  items.splice(event.detail.to, 0, movingItem[0]);
+  event.detail.complete();
+  console.log(items);
+}
 
 const Tab2 = () => {
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Tab 2</IonTitle>
+          <IonTitle>Routines</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large">Tab 23</IonTitle>
+            <IonTitle size="large">Routines</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <ExploreContainer name="Tab 2 page" />
+
+        <IonSlides pager={true} options={slideOpts}>
+          <IonSlide>
+            <h1>Slide 1</h1>
+          </IonSlide>
+          <IonSlide>
+            <h1>Slide 2</h1>
+          </IonSlide>
+          <IonSlide>
+            <h1>Slide 3</h1>
+          </IonSlide>
+        </IonSlides>
+
+        <IonReorderGroup disabled={false} onIonItemReorder={doReorder}>
+          <IonItem>
+            <IonLabel>Cleanser</IonLabel>
+            <IonReorder slot="end" />
+          </IonItem>
+          <IonItem>
+            <IonLabel>Toner</IonLabel>
+            <IonReorder slot="end" />
+          </IonItem>
+          <IonItem>
+            <IonLabel>Moisturiser</IonLabel>
+            <IonReorder slot="end" />
+          </IonItem>
+        </IonReorderGroup>
       </IonContent>
     </IonPage>
   );

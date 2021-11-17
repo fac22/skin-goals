@@ -11,7 +11,8 @@ import {
   IonTabs,
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { home, ellipse, square } from 'ionicons/icons';
+import { home, ellipse, fileTrayFullOutline } from 'ionicons/icons';
+
 import Tab1 from './pages/Tab1';
 import Tab2 from './pages/Tab2';
 import Tab3 from './pages/Tab3';
@@ -67,11 +68,11 @@ const App = () => (
           </IonTabButton>
           <IonTabButton tab="tab2" href="/tab2">
             <IonIcon icon={ellipse} />
-            <IonLabel>Tab 2</IonLabel>
+            <IonLabel>Routines</IonLabel>
           </IonTabButton>
           <IonTabButton tab="tab3" href="/tab3">
-            <IonIcon icon={square} />
-            <IonLabel>Tab 3</IonLabel>
+            <IonIcon icon={fileTrayFullOutline} />
+            <IonLabel>My Products</IonLabel>
           </IonTabButton>
         </IonTabBar>
       </IonTabs>
