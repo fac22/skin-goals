@@ -1,5 +1,37 @@
-.grid-elem {
-    padding: 3rem;
-    border: 2px solid white;
-    border-radius: 8px;
+:root {
+  --dark-veraman: #2f4858;
+  --veraman: #006673;
+  --light-veraman: #008376;
+  --soft-green: #409e60;
+  --lemon-green: #92b13e;
+  --soft-yellow: #eeb82e;
+}
+
+.cream {
+  padding: 3rem;
+
+  border: 1px solid var(--soft-yellow);
+  border-radius: 8px;
+  box-shadow: 2px 2px 5px rgba(177, 151, 68, 0.5);
+
+  transition: transform 0.3s;
+}
+
+.cream:hover {
+  transform: translateY(-3%);
+  cursor: pointer;
+
+  box-shadow: 2px 2px 5px rgba(208, 179, 85, 0.5);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: 1rem;
+  /* grid-template-columns: repeat(2, 1fr); */
+  margin: 1rem;
+}
+
+.column-lg {
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
 }
