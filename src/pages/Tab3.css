@@ -17,7 +17,18 @@
   transition: transform 0.3s;
 }
 
-.cream:hover {
+.add-btn {
+  width: 40%;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 5px;
+
+  margin-top: 25vh;
+  transition: transform 0.3s;
+}
+
+.cream:hover,
+.add-btn:hover {
   transform: translateY(-3%);
   cursor: pointer;
 

@@ -66,6 +66,19 @@ const Tab3 = () => {
             }}
           />
         </IonItem>
+
+        <IonButton
+          color="add-btn"
+          expand="block"
+          className="add-btn"
+          onClick={(e) => {
+            e.preventDefault();
+            creams.push(text);
+            console.log(creams);
+          }}
+        >
+          Add product <IonIcon icon={addOutline} />
+        </IonButton>
         {/* <IonGrid>
           <IonRow>
             <IonCol>

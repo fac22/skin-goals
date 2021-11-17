@@ -76,6 +76,23 @@ http://ionicframework.com/docs/theming/ */
   --ion-color-light-contrast-rgb: 0, 0, 0;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
+
+  /* light-veraman */
+  --ion-color-add-btn: #008376;
+  --ion-color-add-btn-rgb: 0, 131, 118;
+  --ion-color-add-btn-contrast: #ffffff;
+  --ion-color-add-btn-contrast-rgb: 255, 255, 255;
+  --ion-color-add-btn-shade: #007368;
+  --ion-color-add-btn-tint: #1a8f84;
+}
+
+.ion-color-add-btn {
+  --ion-color-base: var(--ion-color-add-btn);
+  --ion-color-base-rgb: var(--ion-color-add-btn-rgb);
+  --ion-color-contrast: var(--ion-color-add-btn-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-add-btn-contrast-rgb);
+  --ion-color-shade: var(--ion-color-add-btn-shade);
+  --ion-color-tint: var(--ion-color-add-btn-tint);
 }
 
 @media (prefers-color-scheme: dark) {
