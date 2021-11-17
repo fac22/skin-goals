@@ -14,6 +14,7 @@ import {
   IonSlide,
 } from '@ionic/react';
 import './MyRoutines.css';
+import ProductCarousel from '../components/ProductCarousel';
 
 const slideOpts = {
   initialSlide: 1,
@@ -66,13 +67,24 @@ const MyRoutines = () => {
           </IonToolbar>
         </IonHeader>
 
-        <IonSlides pager={true} options={slideOpts}>
+        <ProductCarousel
+          key={productColumn.id}
+          column={productColumn}
+          products={products}
+          slideOpts={slideOpts}
+        />
+
+        {/* <IonSlides pager={true} options={slideOpts}>
           {products.map((product) => (
-            <IonSlide>
+            <IonSlide
+              key={product.id}
+              column={productColumn}
+              products={products}
+            >
               <h1>{product.name}</h1>
             </IonSlide>
           ))}
-          {/* <IonSlide>
+          <IonSlide>
             <h1>Slide 1</h1>
           </IonSlide>
           <IonSlide>
@@ -80,8 +92,8 @@ const MyRoutines = () => {
           </IonSlide>
           <IonSlide>
             <h1>Slide 3</h1>
-          </IonSlide> */}
-        </IonSlides>
+          </IonSlide>
+        </IonSlides> */}
 
         <IonReorderGroup disabled={false} onIonItemReorder={doReorder}>
           <IonItem>
