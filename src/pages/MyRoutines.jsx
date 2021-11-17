@@ -22,6 +22,20 @@ const slideOpts = {
 
 const items = ['Cleanser', 'Toner', 'Moisturiser'];
 
+const exampleData = {
+  products: {
+    1: { id: '1', name: 'Moisturiser' },
+    2: { id: '2', name: 'Toner' },
+    3: { id: '3', name: 'Cleanser' },
+  },
+  columns: {
+    products: {
+      id: 'products',
+      productIds: [1, 2, 3],
+    },
+  },
+};
+
 console.log(items);
 
 function doReorder(event) {
@@ -33,6 +47,11 @@ function doReorder(event) {
 }
 
 const MyRoutines = () => {
+  const [data, setData] = React.useState(exampleData);
+  const productColumn = data.columns.products;
+  const products = productColumn.productIds.map(
+    (productId) => data.products[productId]
+  );
   return (
     <IonPage>
       <IonHeader>
@@ -48,7 +67,12 @@ const MyRoutines = () => {
         </IonHeader>
 
         <IonSlides pager={true} options={slideOpts}>
-          <IonSlide>
+          {products.map((product) => (
+            <IonSlide>
+              <h1>{product.name}</h1>
+            </IonSlide>
+          ))}
+          {/* <IonSlide>
             <h1>Slide 1</h1>
           </IonSlide>
           <IonSlide>
@@ -56,7 +80,7 @@ const MyRoutines = () => {
           </IonSlide>
           <IonSlide>
             <h1>Slide 3</h1>
-          </IonSlide>
+          </IonSlide> */}
         </IonSlides>
 
         <IonReorderGroup disabled={false} onIonItemReorder={doReorder}>
