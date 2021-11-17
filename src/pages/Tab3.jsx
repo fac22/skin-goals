@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
 
 import {
   IonContent,
@@ -9,7 +10,14 @@ import {
   IonPage,
   IonTitle,
   IonToolbar,
+  IonButton,
+  IonIcon,
+  IonInput,
+  useIonModal,
+  IonItem,
 } from '@ionic/react';
+import { addOutline, cloudDoneOutline } from 'ionicons/icons';
+
 import ExploreContainer from '../components/ExploreContainer';
 import './Tab3.css';
 
@@ -23,6 +31,8 @@ const creams = [
 ];
 
 const Tab3 = () => {
+  const [text, setText] = useState('');
+
   return (
     <IonPage>
       <IonHeader>
@@ -45,6 +55,17 @@ const Tab3 = () => {
             })}
           </div>
         </section>
+
+        <IonItem>
+          <IonInput
+            value={text}
+            placeholder="Add cream"
+            onIonChange={(e) => {
+              console.log(e.detail.value);
+              setText(e.detail.value);
+            }}
+          />
+        </IonItem>
         {/* <IonGrid>
           <IonRow>
             <IonCol>
