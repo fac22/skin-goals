@@ -15,13 +15,14 @@ import {
   IonInput,
   useIonModal,
   IonItem,
+  IonModal,
 } from '@ionic/react';
 import { addOutline, cloudDoneOutline } from 'ionicons/icons';
 
 import ExploreContainer from '../components/ExploreContainer';
 import './MyProducts.css';
 
-const creams = [
+const creamsArr = [
   'Retinol',
   'Salicylic Acid',
   'Vitamin C',
@@ -32,15 +33,8 @@ const creams = [
 
 const MyProducts = () => {
   const [text, setText] = useState('');
-  const [creams, setCreams] = useState([
-    'Retinol',
-    'Salicylic Acid',
-    'Vitamin C',
-    'Hyaluronic Acid',
-    'SPF',
-    'hello',
-  ]);
-
+  const [creams, setCreams] = useState([...creamsArr]);
+  const [myModal, setMyModal] = useState({ isOpen: false });
   return (
     <IonPage>
       <IonHeader>
@@ -53,15 +47,23 @@ const MyProducts = () => {
         {/* <ExploreContainer name="Tab 3 page" /> */}
         <section>
           <div className="grid">
-            {/* <div className="cream">Retinol</div>
-            <div className="cream">Salicylic Acid</div>
-            <div className="cream">Vitamin C</div>
-            <div className="cream">Hyaluronic Acid</div>
-            <div className="cream">SPF</div> */}
             {creams.map((cream) => {
-              return <div className="cream">{cream}</div>;
+              return (
+                <div
+                  onClick={() => setMyModal({ isOpen: true })}
+                  className="cream"
+                >
+                  {cream}
+                </div>
+              );
             })}
           </div>
+          <IonModal isOpen={myModal.isOpen}>
+            <h1>This is a modal</h1>
+            <IonButton onClick={() => setMyModal({ isOpen: false })}>
+              Close Modal
+            </IonButton>
+          </IonModal>
         </section>
 
         <IonItem>
@@ -89,24 +91,6 @@ const MyProducts = () => {
         >
           Add product <IonIcon icon={addOutline} />
         </IonButton>
-        {/* <IonGrid>
-          <IonRow>
-            <IonCol>
-              <div className='grid-elem'>element 1</div>
-            </IonCol>
-            <IonCol>
-              <div className='grid-elem'>element 2</div>
-            </IonCol>
-            <IonCol>
-              <div className='grid-elem'>element 3</div>
-            </IonCol>
-            <IonCol>
-              <div className='grid-elem'>element 4</div>
-            </IonCol>
-            
-            
-          </IonRow>
-        </IonGrid> */}
       </IonContent>
     </IonPage>
   );
