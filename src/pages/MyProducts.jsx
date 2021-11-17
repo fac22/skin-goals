@@ -57,6 +57,7 @@ const MyProducts = () => {
       <IonContent fullscreen>
         {/* <ExploreContainer name="Tab 3 page" /> */}
         <section>
+          {/* ---------------------   RENDERS all product info on page */}
           <div className="grid">
             {creams.map((cream) => {
               return (
@@ -69,6 +70,7 @@ const MyProducts = () => {
               );
             })}
           </div>
+
           {/* ---------------------   MODAL for each cream */}
           <IonModal isOpen={myModal.isOpen}>
             <h1>This is a modal</h1>
@@ -87,9 +89,19 @@ const MyProducts = () => {
         >
           Add product <IonIcon icon={addOutline} />
         </IonButton>
+
+        {/* ---------------------   FORM MODAL to add a new product*/}
         <IonModal isOpen={formModal.isOpen}>
-          <AddProductForm />
-          <IonButton onClick={() => setFormModal({ isOpen: false })}>
+          <AddProductForm
+            name={name}
+            description={description}
+            setName={setName}
+            setDescription={setDescription}
+          />
+          <IonButton
+            color="danger"
+            onClick={() => setFormModal({ isOpen: false })}
+          >
             Close Modal
           </IonButton>
         </IonModal>

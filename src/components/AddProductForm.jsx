@@ -4,10 +4,11 @@ import {
   IonLabel,
   IonInput,
   IonTextarea,
+  IonButton,
 } from '@ionic/react';
 import React from 'react';
 
-const AddProductForm = ({ name, description }) => {
+const AddProductForm = ({ name, description, setName, setDescription }) => {
   return (
     <div>
       <IonList>
@@ -21,6 +22,19 @@ const AddProductForm = ({ name, description }) => {
           <IonTextarea value={description} placeholder="Product description" />
         </IonItem>
       </IonList>
+
+      <IonButton
+        color="add-btn"
+        expand="block"
+        className="add-btn"
+        // onClick={(e) => {
+        //   e.preventDefault();
+        //   setName([...creams, text]);
+        //   setText('');
+        // }}
+      >
+        Submit product information
+      </IonButton>
     </div>
   );
 };
