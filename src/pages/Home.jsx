@@ -17,9 +17,9 @@ import {
   IonList,
   IonTitle,
 } from '@ionic/react';
-import './Tab1.css';
+import './Home.css';
 import { person } from 'ionicons/icons';
-const Tab1 = () => {
+const Home = () => {
   return (
     <IonPage>
       <IonHeader>
@@ -57,4 +57,4 @@ const Tab1 = () => {
   );
 };
 
-export default Tab1;
+export default Home;

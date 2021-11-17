@@ -19,7 +19,7 @@ import {
 import { addOutline, cloudDoneOutline } from 'ionicons/icons';
 
 import ExploreContainer from '../components/ExploreContainer';
-import './Tab3.css';
+import './MyProducts.css';
 
 const creams = [
   'Retinol',
@@ -30,7 +30,7 @@ const creams = [
   'hello',
 ];
 
-const Tab3 = () => {
+const MyProducts = () => {
   const [text, setText] = useState('');
   const [creams, setCreams] = useState([
     'Retinol',
@@ -112,4 +112,4 @@ const Tab3 = () => {
   );
 };
 
-export default Tab3;
+export default MyProducts;

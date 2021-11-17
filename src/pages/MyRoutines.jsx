@@ -13,7 +13,7 @@ import {
   IonSlides,
   IonSlide,
 } from '@ionic/react';
-import './Tab2.css';
+import './MyRoutines.css';
 
 const slideOpts = {
   initialSlide: 1,
@@ -32,7 +32,7 @@ function doReorder(event) {
   console.log(items);
 }
 
-const Tab2 = () => {
+const MyRoutines = () => {
   return (
     <IonPage>
       <IonHeader>
@@ -78,4 +78,4 @@ const Tab2 = () => {
   );
 };
 
-export default Tab2;
+export default MyRoutines;
