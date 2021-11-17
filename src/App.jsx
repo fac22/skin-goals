@@ -13,9 +13,9 @@ import {
 import { IonReactRouter } from '@ionic/react-router';
 import { home, ellipse, fileTrayFullOutline } from 'ionicons/icons';
 
-import Tab1 from './pages/Tab1';
-import Tab2 from './pages/Tab2';
-import Tab3 from './pages/Tab3';
+import Home from './pages/Home';
+import MyRoutines from './pages/MyRoutines';
+import MyProducts from './pages/MyProducts';
 import LogIn from './pages/LogIn';
 import SignUp from './pages/SignUp';
 
@@ -43,14 +43,14 @@ const App = () => (
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
-          <Route exact path="/tab1">
-            <Tab1 />
+          <Route exact path="/home">
+            <Home />
           </Route>
-          <Route exact path="/tab2">
-            <Tab2 />
+          <Route exact path="/myRoutines">
+            <MyRoutines />
           </Route>
-          <Route path="/tab3">
-            <Tab3 />
+          <Route path="/myProducts">
+            <MyProducts />
           </Route>
           <Route exact path="/login">
             <LogIn />
@@ -59,18 +59,18 @@ const App = () => (
             <SignUp />
           </Route>
           <Route exact path="/">
-            <Redirect to="/tab1" />
+            <Redirect to="/home" />
           </Route>
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
-          <IonTabButton tab="tab1" href="/tab1">
+          <IonTabButton tab="home" href="/home">
             <IonIcon icon={home} />
           </IonTabButton>
-          <IonTabButton tab="tab2" href="/tab2">
+          <IonTabButton tab="myRoutines" href="/myRoutines">
             <IonIcon icon={ellipse} />
             <IonLabel>Routines</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab3" href="/tab3">
+          <IonTabButton tab="myProducts" href="/myProducts">
             <IonIcon icon={fileTrayFullOutline} />
             <IonLabel>My Products</IonLabel>
           </IonTabButton>
