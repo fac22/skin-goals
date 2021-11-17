@@ -14,7 +14,7 @@ jobs:
       - name: Build
         run: |
           npm install
-          npm run build
+          ionic build
       - name: Firebase Deploy
         run: |
           sudo npm install -g firebase-tools
