@@ -13,6 +13,7 @@ import {
   IonSlides,
   IonSlide,
 } from '@ionic/react';
+import { DragDropContext } from 'react-beautiful-dnd';
 import './MyRoutines.css';
 import ProductCarousel from '../components/ProductCarousel';
 
@@ -53,6 +54,7 @@ const MyRoutines = () => {
   const products = productColumn.productIds.map(
     (productId) => data.products[productId]
   );
+  const onDragEnd = (result) => {};
   return (
     <IonPage>
       <IonHeader>
@@ -67,33 +69,14 @@ const MyRoutines = () => {
           </IonToolbar>
         </IonHeader>
 
-        <ProductCarousel
-          key={productColumn.id}
-          column={productColumn}
-          products={products}
-          slideOpts={slideOpts}
-        />
-
-        {/* <IonSlides pager={true} options={slideOpts}>
-          {products.map((product) => (
-            <IonSlide
-              key={product.id}
-              column={productColumn}
-              products={products}
-            >
-              <h1>{product.name}</h1>
-            </IonSlide>
-          ))}
-          <IonSlide>
-            <h1>Slide 1</h1>
-          </IonSlide>
-          <IonSlide>
-            <h1>Slide 2</h1>
-          </IonSlide>
-          <IonSlide>
-            <h1>Slide 3</h1>
-          </IonSlide>
-        </IonSlides> */}
+        <DragDropContext onDragEnd={onDragEnd}>
+          <ProductCarousel
+            key={productColumn.id}
+            column={productColumn}
+            products={products}
+            slideOpts={slideOpts}
+          />
+        </DragDropContext>
 
         <IonReorderGroup disabled={false} onIonItemReorder={doReorder}>
           <IonItem>
