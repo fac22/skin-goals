@@ -4,27 +4,54 @@ import {
   IonContent,
   IonHeader,
   IonPage,
-  IonTitle,
   IonToolbar,
+  IonButton,
+  IonIcon,
+  IonCard,
+  IonCardContent,
+  IonCardHeader,
+  IonCardSubtitle,
+  IonCardTitle,
+  IonItem,
+  IonLabel,
+  IonList,
+  IonTitle,
 } from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
 import './Tab1.css';
-
+import { person } from 'ionicons/icons';
 const Tab1 = () => {
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Tab 1</IonTitle>
+          <IonTitle>SkinGoals</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent fullscreen>
+      <IonContent fullscreen className="ion-padding">
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large">Tab 1</IonTitle>
+            <IonButton size="large" fill="clear" slot="end" shape="round">
+              <IonIcon icon={person} />
+            </IonButton>
           </IonToolbar>
         </IonHeader>
-        <ExploreContainer name="Tab 1 page" />
+        <IonCard>
+          <IonCardHeader>
+            <IonCardSubtitle>Hello user</IonCardSubtitle>
+            <IonCardTitle>
+              Great skin is not simply a matter of DNA — your daily habits, in
+              fact, have a big impact on what you see in the mirror.
+            </IonCardTitle>
+          </IonCardHeader>
+
+          <IonCardContent>
+            <IonList>
+              <IonItem>
+                <IonLabel>Start today, create your first routine</IonLabel>
+              </IonItem>
+            </IonList>
+          </IonCardContent>
+        </IonCard>
       </IonContent>
     </IonPage>
   );
