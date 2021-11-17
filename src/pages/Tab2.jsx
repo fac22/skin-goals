@@ -15,13 +15,14 @@ import './Tab2.css';
 
 const items = ['Cleanser', 'Toner', 'Moisturiser'];
 
+console.log(items);
+
 function doReorder(event) {
-  console.log('items before: ', items);
-  console.log('Dragged from index', event.detail.from, 'to', event.detail.to);
+  console.log(event.detail.from, event.detail.to);
   const movingItem = items.splice(event.detail.from, 1);
   items.splice(event.detail.to, 0, movingItem[0]);
   event.detail.complete();
-  console.log('items after: ', items);
+  console.log(items);
 }
 
 const Tab2 = () => {
