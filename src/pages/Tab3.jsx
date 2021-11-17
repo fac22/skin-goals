@@ -13,6 +13,15 @@ import {
 import ExploreContainer from '../components/ExploreContainer';
 import './Tab3.css';
 
+const creams = [
+  'Retinol',
+  'Salicylic Acid',
+  'Vitamin C',
+  'Hyaluronic Acid',
+  'SPF',
+  'hello',
+];
+
 const Tab3 = () => {
   return (
     <IonPage>
@@ -23,14 +32,20 @@ const Tab3 = () => {
       </IonHeader>
 
       <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">My Products</IonTitle>
-          </IonToolbar>
-        </IonHeader>
         {/* <ExploreContainer name="Tab 3 page" /> */}
-
-        <IonGrid>
+        <section>
+          <div className="grid">
+            {/* <div className="cream">Retinol</div>
+            <div className="cream">Salicylic Acid</div>
+            <div className="cream">Vitamin C</div>
+            <div className="cream">Hyaluronic Acid</div>
+            <div className="cream">SPF</div> */}
+            {creams.map((cream) => {
+              return <div className="cream">{cream}</div>;
+            })}
+          </div>
+        </section>
+        {/* <IonGrid>
           <IonRow>
             <IonCol>
               <div className='grid-elem'>element 1</div>
@@ -47,7 +62,7 @@ const Tab3 = () => {
             
             
           </IonRow>
-        </IonGrid>
+        </IonGrid> */}
       </IonContent>
     </IonPage>
   );
