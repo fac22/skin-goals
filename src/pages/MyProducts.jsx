@@ -20,17 +20,9 @@ import {
 import { addOutline, cloudDoneOutline } from 'ionicons/icons';
 import AddProductForm from '../components/AddProductForm';
 
+import creamsArr from '../creams-data.js';
 import ExploreContainer from '../components/ExploreContainer';
 import './MyProducts.css';
-
-const creamsArr = [
-  'Retinol',
-  'Salicylic Acid',
-  'Vitamin C',
-  'Hyaluronic Acid',
-  'SPF',
-  'hello',
-];
 
 const MyProducts = () => {
   const [name, setName] = useState('');
@@ -97,6 +89,10 @@ const MyProducts = () => {
             description={description}
             setName={setName}
             setDescription={setDescription}
+            creams={creams}
+            setCreams={setCreams}
+            formModal={formModal}
+            setFormModal={setFormModal}
           />
           <IonButton
             color="danger"
