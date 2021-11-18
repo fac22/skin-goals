@@ -41,6 +41,14 @@ import './theme/variables.css';
 const App = () => (
   <IonApp>
     <IonReactRouter>
+      <IonRouterOutlet>
+        <Route exact path="/login">
+          <LogIn />
+        </Route>
+        <Route exact path="/signup">
+          <SignUp />
+        </Route>
+      </IonRouterOutlet>
       <IonTabs>
         <IonRouterOutlet>
           <Route exact path="/home">
@@ -52,12 +60,7 @@ const App = () => (
           <Route path="/myProducts">
             <MyProducts />
           </Route>
-          <Route exact path="/login">
-            <LogIn />
-          </Route>
-          <Route exact path="/signup">
-            <SignUp />
-          </Route>
+
           <Route exact path="/">
             <Redirect to="/home" />
           </Route>
