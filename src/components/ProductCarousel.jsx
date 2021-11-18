@@ -1,6 +1,6 @@
-import { IonSlides, IonSlide } from '@ionic/react';
+import { IonSlides } from '@ionic/react';
 import { Droppable } from 'react-beautiful-dnd';
-import Product from './Product';
+import ProductSlide from './ProductSlide';
 
 const ProductCarousel = ({ slideOpts, products, column }) => {
   return (
@@ -8,9 +8,9 @@ const ProductCarousel = ({ slideOpts, products, column }) => {
       {(provided) => (
         <IonSlides pager={true} options={slideOpts} ref={provided.innerRef} {...provided.droppableProps}>
           {products.map((product, index) => (
-            <Product key={product.id} column={column} product={product} index={index}>
+            <ProductSlide key={product.id} column={column} product={product} index={index}>
               <h1>{product.name}</h1>
-            </Product>
+            </ProductSlide>
           ))}
           {provided.placeholder}
         </IonSlides>

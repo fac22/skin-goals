@@ -1,18 +1,6 @@
-import {
-  IonList,
-  IonItem,
-  IonLabel,
-  IonInput,
-  IonToggle,
-  IonRadio,
-  IonCheckbox,
-  IonItemSliding,
-  IonItemOption,
-  IonItemOptions,
-  IonContent,
-} from '@ionic/react';
+import { IonList } from '@ionic/react';
 import { Droppable } from 'react-beautiful-dnd';
-import Product from './Product';
+// import Product from './ProductSlide';
 import ProductListItem from './ProductListItem';
 
 const RoutineBuilder = ({ products, column }) => {

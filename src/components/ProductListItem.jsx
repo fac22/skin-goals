@@ -2,7 +2,7 @@ import { IonItem, IonLabel, IonIcon } from '@ionic/react';
 import { Draggable } from 'react-beautiful-dnd';
 import { reorderThreeOutline } from 'ionicons/icons';
 
-const ProductListItem = ({ column, product, index }) => {
+const ProductListItem = ({ product, index }) => {
   return (
     <Draggable draggableId={product.id} index={index}>
       {(provided) => (
