@@ -16,6 +16,7 @@ import { home, ellipse, fileTrayFullOutline } from 'ionicons/icons';
 import Home from './pages/Home';
 import MyRoutines from './pages/MyRoutines';
 import MyProducts from './pages/MyProducts';
+import FirstPage from './pages/FirstPage';
 import LogIn from './pages/LogIn';
 import SignUp from './pages/SignUp';
 
@@ -41,6 +42,17 @@ import './theme/variables.css';
 const App = () => (
   <IonApp>
     <IonReactRouter>
+      <IonRouterOutlet>
+        <Route exact path="/">
+          <FirstPage />
+        </Route>
+        <Route exact path="/login">
+          <LogIn />
+        </Route>
+        <Route exact path="/signup">
+          <SignUp />
+        </Route>
+      </IonRouterOutlet>
       <IonTabs>
         <IonRouterOutlet>
           <Route exact path="/home">
@@ -52,15 +64,10 @@ const App = () => (
           <Route path="/myProducts">
             <MyProducts />
           </Route>
-          <Route exact path="/login">
-            <LogIn />
-          </Route>
-          <Route exact path="/signup">
-            <SignUp />
-          </Route>
-          <Route exact path="/">
+
+          {/* <Route exact path="/">
             <Redirect to="/home" />
-          </Route>
+          </Route> */}
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
           <IonTabButton tab="home" href="/home">
