@@ -15,31 +15,28 @@ import {
   IonInput,
   useIonModal,
   IonItem,
+  IonModal,
 } from '@ionic/react';
 import { addOutline, cloudDoneOutline } from 'ionicons/icons';
+import AddProductForm from '../components/AddProductForm';
 
+import creamsArr from '../creams-data.js';
 import ExploreContainer from '../components/ExploreContainer';
 import './MyProducts.css';
 
-const creams = [
-  'Retinol',
-  'Salicylic Acid',
-  'Vitamin C',
-  'Hyaluronic Acid',
-  'SPF',
-  'hello',
-];
-
 const MyProducts = () => {
-  const [text, setText] = useState('');
-  const [creams, setCreams] = useState([
-    'Retinol',
-    'Salicylic Acid',
-    'Vitamin C',
-    'Hyaluronic Acid',
-    'SPF',
-    'hello',
-  ]);
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+
+  const [creams, setCreams] = useState([...creamsArr]);
+  const [myModal, setMyModal] = useState({ isOpen: false });
+  const [formModal, setFormModal] = useState({ isOpen: false });
+
+  // const readInput = (e) => {
+  //   e.preventDefault();
+  //   setCreams([...creams, text]);
+  //   setText('');
+  // };
 
   return (
     <IonPage>
@@ -52,61 +49,58 @@ const MyProducts = () => {
       <IonContent fullscreen>
         {/* <ExploreContainer name="Tab 3 page" /> */}
         <section>
+          {/* ---------------------   RENDERS all product info on page */}
           <div className="grid">
-            {/* <div className="cream">Retinol</div>
-            <div className="cream">Salicylic Acid</div>
-            <div className="cream">Vitamin C</div>
-            <div className="cream">Hyaluronic Acid</div>
-            <div className="cream">SPF</div> */}
             {creams.map((cream) => {
-              return <div className="cream">{cream}</div>;
+              return (
+                <div
+                  onClick={() => setMyModal({ isOpen: true })}
+                  className="cream"
+                >
+                  {cream}
+                </div>
+              );
             })}
           </div>
+
+          {/* ---------------------   MODAL for each cream */}
+          <IonModal isOpen={myModal.isOpen}>
+            <h1>This is a modal</h1>
+            <IonButton onClick={() => setMyModal({ isOpen: false })}>
+              Close Modal
+            </IonButton>
+          </IonModal>
         </section>
 
-        <IonItem>
-          <IonInput
-            value={text}
-            placeholder="Add cream"
-            onIonChange={(e) => {
-              console.log(e.detail.value);
-              setText(e.detail.value);
-            }}
-          />
-        </IonItem>
-
+        {/* ---------------------   button opens form modal */}
         <IonButton
           color="add-btn"
           expand="block"
           className="add-btn"
-          onClick={(e) => {
-            e.preventDefault();
-            setCreams([...creams, text]);
-            setText('');
-            // creams.push(text);
-            console.log(creams);
-          }}
+          onClick={() => setFormModal({ isOpen: true })}
         >
           Add product <IonIcon icon={addOutline} />
         </IonButton>
-        {/* <IonGrid>
-          <IonRow>
-            <IonCol>
-              <div className='grid-elem'>element 1</div>
-            </IonCol>
-            <IonCol>
-              <div className='grid-elem'>element 2</div>
-            </IonCol>
-            <IonCol>
-              <div className='grid-elem'>element 3</div>
-            </IonCol>
-            <IonCol>
-              <div className='grid-elem'>element 4</div>
-            </IonCol>
-            
-            
-          </IonRow>
-        </IonGrid> */}
+
+        {/* ---------------------   FORM MODAL to add a new product*/}
+        <IonModal isOpen={formModal.isOpen}>
+          <AddProductForm
+            name={name}
+            description={description}
+            setName={setName}
+            setDescription={setDescription}
+            creams={creams}
+            setCreams={setCreams}
+            formModal={formModal}
+            setFormModal={setFormModal}
+          />
+          <IonButton
+            color="danger"
+            onClick={() => setFormModal({ isOpen: false })}
+          >
+            Close Modal
+          </IonButton>
+        </IonModal>
       </IonContent>
     </IonPage>
   );
