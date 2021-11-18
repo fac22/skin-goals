@@ -8,48 +8,45 @@ import {
   IonTitle,
   IonToolbar,
   IonLabel,
+  IonList,
 } from '@ionic/react';
 import React from 'react';
 
 const LogIn = () => {
-  const [username, setUserName] = React.useState('');
+  const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
-  const [text, setText] = React.useState();
-  const [number, setNumber] = React.useState();
 
   function loginUser() {
-    console.log(username, password);
+    console.log(email, password);
   }
+
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>LogIn</IonTitle>
+          <IonTitle>Login Page</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding">
-        <IonItem>
-          <IonInput value={text} disabled></IonInput>
-        </IonItem>
-        <IonItem>
-          <IonLabel position="floating">Username</IonLabel>
-          <IonInput
-            value={username}
-            type="text"
-            placeholder="Username"
-            onIonChange={(e) => setUserName(e.target.value)}
-          />
-        </IonItem>
-        <IonItem>
-          <IonLabel position="floating">Passord</IonLabel>
-          <IonInput
-            value={password}
-            type="password"
-            placeholder="Password"
-            onIonChange={(e) => setPassword(e.target.value)}
-          />
-        </IonItem>
-        <IonButton onClick={loginUser}>Login</IonButton>
+        <IonList>
+          <IonItem>
+            <IonLabel position="floating">Email Address</IonLabel>
+            <IonInput value={email} placeholder="Your email address" onIonChange={(e) => setEmail(e.detail.value)} />
+          </IonItem>
+
+          <IonItem>
+            <IonLabel position="floating">Password</IonLabel>
+            <IonInput value={password} placeholder="Password" onIonChange={(e) => setPassword(e.detail.value)} />
+          </IonItem>
+        </IonList>
+        <div style={{ padding: 8 }}>
+          <IonButton expand="full" style={{ margin: 14 }} onClick={loginUser}>
+            Login
+          </IonButton>
+          {/* {isAuth ? "Logged In" : "Login"} */}
+          <p> New here? </p>
+          <IonButton href="/login">Create Account</IonButton>
+        </div>
       </IonContent>
     </IonPage>
   );

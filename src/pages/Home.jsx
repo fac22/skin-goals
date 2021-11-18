@@ -39,8 +39,8 @@ const Home = () => {
           <IonCardHeader>
             <IonCardSubtitle>Hello user</IonCardSubtitle>
             <IonCardTitle>
-              Great skin is not simply a matter of DNA — your daily habits, in
-              fact, have a big impact on what you see in the mirror.
+              Great skin is not simply a matter of DNA — your daily habits, in fact, have a big impact on what you see
+              in the mirror.
             </IonCardTitle>
           </IonCardHeader>
 

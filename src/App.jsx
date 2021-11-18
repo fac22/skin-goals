@@ -1,23 +1,15 @@
 import React from 'react';
 
 import { Redirect, Route } from 'react-router-dom';
-import {
-  IonApp,
-  IonIcon,
-  IonLabel,
-  IonRouterOutlet,
-  IonTabBar,
-  IonTabButton,
-  IonTabs,
-} from '@ionic/react';
+import { IonApp, IonIcon, IonLabel, IonRouterOutlet, IonTabBar, IonTabButton, IonTabs } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { home, ellipse, fileTrayFullOutline } from 'ionicons/icons';
 
 import Home from './pages/Home';
 import MyRoutines from './pages/MyRoutines';
 import MyProducts from './pages/MyProducts';
-import LogIn from './pages/LogIn';
-import SignUp from './pages/SignUp';
+import PrivateRoutes from './components/PrivateRoutes';
+import PublicRoutes from './components/ PublicRoutes';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -40,47 +32,21 @@ import './theme/variables.css';
 
 const App = () => (
   <IonApp>
-    <IonReactRouter>
-      <IonRouterOutlet>
-        <Route exact path="/login">
-          <LogIn />
-        </Route>
-        <Route exact path="/signup">
-          <SignUp />
-        </Route>
-      </IonRouterOutlet>
-      <IonTabs>
-        <IonRouterOutlet>
-          <Route exact path="/home">
-            <Home />
-          </Route>
-          <Route exact path="/myRoutines">
-            <MyRoutines />
-          </Route>
-          <Route path="/myProducts">
-            <MyProducts />
-          </Route>
-
-          <Route exact path="/">
-            <Redirect to="/home" />
-          </Route>
-        </IonRouterOutlet>
-        <IonTabBar slot="bottom">
-          <IonTabButton tab="home" href="/home">
-            <IonIcon icon={home} />
-          </IonTabButton>
-          <IonTabButton tab="myRoutines" href="/myRoutines">
-            <IonIcon icon={ellipse} />
-            <IonLabel>Routines</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="myProducts" href="/myProducts">
-            <IonIcon icon={fileTrayFullOutline} />
-            <IonLabel>My Products</IonLabel>
-          </IonTabButton>
-        </IonTabBar>
-      </IonTabs>
-    </IonReactRouter>
+    <PrivateRoutes />
+    <PublicRoutes />
   </IonApp>
 );
+
+// const App = () => {
+//   const { store } = React.useContext(MobXProviderContext);
+
+//   return !store.authCheckComplete ? (
+//     <IonApp>
+//       <IonLoading message="Starting App..." />
+//     </IonApp>
+//   ) : (
+//     <IonApp>{store.authenticatedUser ? <PublicRoutes /> : <PrivateRoutes />}</IonApp>
+//   );
+// };
 
 export default App;
