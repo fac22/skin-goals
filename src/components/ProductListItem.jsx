@@ -1,18 +1,18 @@
-import { IonSlide, IonIcon } from '@ionic/react';
+import { IonItem, IonLabel, IonIcon } from '@ionic/react';
 import { Draggable } from 'react-beautiful-dnd';
 import { reorderThreeOutline } from 'ionicons/icons';
 
-const Product = ({ column, product, index }) => {
+const ProductListItem = ({ column, product, index }) => {
   return (
     <Draggable draggableId={product.id} index={index}>
       {(provided) => (
-        <IonSlide {...provided.draggableProps} ref={provided.innerRef}>
-          {product.name}
+        <IonItem {...provided.draggableProps} ref={provided.innerRef}>
+          <IonLabel>{product.name}</IonLabel>
           <IonIcon icon={reorderThreeOutline} {...provided.dragHandleProps} />
-        </IonSlide>
+        </IonItem>
       )}
     </Draggable>
   );
 };
 
-export default Product;
+export default ProductListItem;
