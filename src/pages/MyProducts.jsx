@@ -32,15 +32,9 @@ const MyProducts = () => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
 
-  const [creams, setCreams] = useState([...creamsArr]);
-  const [myModal, setMyModal] = useState({ isOpen: false });
+  const [creams, setCreams] = useState([...CreamsData]);
+  const [creamModal, setCreamModal] = useState({ isOpen: false });
   const [formModal, setFormModal] = useState({ isOpen: false });
-
-  // const readInput = (e) => {
-  //   e.preventDefault();
-  //   setCreams([...creams, text]);
-  //   setText('');
-  // };
 
   return (
     <IonPage>
@@ -56,19 +50,23 @@ const MyProducts = () => {
           {/* ---------------------   RENDERS all product info on page */}
           <div className="grid">
             {creams.map((cream) => {
+              // <IonModal key={cream.id} isOpen={creamModal.isOpen}>
+              //   <h1>This is cream.id {cream.id}</h1>
+              //   <IonButton onClick={() => setCreamModal({ isOpen: false })}>Close Modal</IonButton>
+              // </IonModal>;
               return (
-                <div onClick={() => setMyModal({ isOpen: true })} className="cream">
-                  {cream}
+                <div key={cream.id} onClick={() => setCreamModal({ isOpen: true })} className="cream">
+                  {cream.name}
                 </div>
               );
             })}
           </div>
 
           {/* ---------------------   MODAL for each cream */}
-          <IonModal isOpen={myModal.isOpen}>
+          {/* <IonModal isOpen={myModal.isOpen}>
             <h1>This is a modal</h1>
             <IonButton onClick={() => setMyModal({ isOpen: false })}>Close Modal</IonButton>
-          </IonModal>
+          </IonModal> */}
         </section>
 
         {/* ---------------------   button opens form modal */}
