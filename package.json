@@ -54,6 +54,7 @@
       "react-app/jest"
     ]
   },
+  "prettier": "@ionic/prettier-config",
   "browserslist": {
     "production": [
       ">0.2%",
@@ -69,7 +70,9 @@
   "devDependencies": {
     "@capacitor/cli": "3.3.1",
     "@ionic/eslint-config": "^0.3.0",
-    "eslint": "^7.32.0"
+    "@ionic/prettier-config": "^2.0.0",
+    "eslint": "^7.32.0",
+    "prettier": "^2.4.1"
   },
   "description": "An Ionic project"
 }
