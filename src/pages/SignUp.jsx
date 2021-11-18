@@ -1,4 +1,5 @@
 import React from 'react';
+import { useAuth } from '../contexts/AuthContext';
 
 import {
   IonButtons,
@@ -27,7 +28,7 @@ const SignUp = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Create Accout</IonTitle>
+          <IonTitle>Create Account</IonTitle>
           <IonButtons slot="start">
             <IonBackButton />
           </IonButtons>
