@@ -48,13 +48,15 @@ function doReorder(event) {
   console.log(items);
 }
 
+function onDragEnd(result) {
+  console.log('Dragged!');
+}
+
 const MyRoutines = () => {
   const [data, setData] = React.useState(exampleData);
   const productColumn = data.columns.products;
-  const products = productColumn.productIds.map(
-    (productId) => data.products[productId]
-  );
-  const onDragEnd = (result) => {};
+  const products = productColumn.productIds.map((productId) => data.products[productId]);
+
   return (
     <IonPage>
       <IonHeader>
@@ -70,12 +72,7 @@ const MyRoutines = () => {
         </IonHeader>
 
         <DragDropContext onDragEnd={onDragEnd}>
-          <ProductCarousel
-            key={productColumn.id}
-            column={productColumn}
-            products={products}
-            slideOpts={slideOpts}
-          />
+          <ProductCarousel key={productColumn.id} column={productColumn} products={products} slideOpts={slideOpts} />
         </DragDropContext>
 
         <IonReorderGroup disabled={false} onIonItemReorder={doReorder}>
