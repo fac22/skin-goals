@@ -50,8 +50,8 @@ const AddProductForm = ({ name, description, setName, setDescription, creams, se
           e.preventDefault();
           await addCream();
 
-          console.log(creams);
           setFormModal({ isOpen: false });
+          console.log(creams);
         }}
       >
         Submit product information
