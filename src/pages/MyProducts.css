@@ -7,12 +7,26 @@
   --soft-yellow: #eeb82e;
 }
 
-.cream {
-  padding: 3rem;
+.cream-wrapper {
+  max-width: 250px;
+  padding: 1rem;
+  position: relative;
+  background: linear-gradient(to right, var(--light-veraman), var(--soft-yellow));
+  padding: 3px;
 
-  border: 1px solid var(--soft-yellow);
   border-radius: 8px;
-  box-shadow: 2px 2px 5px rgba(177, 151, 68, 0.5);
+}
+
+.cream {
+  background: #121212;
+  color: white;
+  padding: 2rem;
+
+  /* padding: 3rem; */
+
+  /* border: 1px solid var(--soft-yellow); */
+  border-radius: 8px;
+  box-shadow: 2px 3px 5px rgba(177, 151, 68, 0.5);
 
   transition: transform 0.3s;
 }

@@ -20,23 +20,23 @@ import {
 import { addOutline, cloudDoneOutline } from 'ionicons/icons';
 import AddProductForm from '../components/AddProductForm';
 
-import creamsArr from '../creams-data.js';
-import ExploreContainer from '../components/ExploreContainer';
+import CreamsData from '../creams-data.js';
 import './MyProducts.css';
+
+// const creamsArr = [];
+// CreamsData.forEach((cream) => {
+//   creamsArr.push(cream.name);
+// });
 
 const MyProducts = () => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
 
-  const [creams, setCreams] = useState([...creamsArr]);
-  const [myModal, setMyModal] = useState({ isOpen: false });
+  const [creams, setCreams] = useState([...CreamsData]);
+  const [creamModal, setCreamModal] = useState({ isOpen: false, id: 0 });
   const [formModal, setFormModal] = useState({ isOpen: false });
 
-  // const readInput = (e) => {
-  //   e.preventDefault();
-  //   setCreams([...creams, text]);
-  //   setText('');
-  // };
+  const [creamId, setCreamId] = useState(0);
 
   return (
     <IonPage>
@@ -53,32 +53,32 @@ const MyProducts = () => {
           <div className="grid">
             {creams.map((cream) => {
               return (
-                <div
-                  onClick={() => setMyModal({ isOpen: true })}
-                  className="cream"
-                >
-                  {cream}
-                </div>
+                <section className="cream-wrapper">
+                  <div
+                    key={cream.id}
+                    onClick={() => {
+                      setCreamId(cream.id);
+                      console.log(creamId);
+                      setCreamModal({ isOpen: true, id: cream.id });
+                    }}
+                    className="cream"
+                  >
+                    {cream.name}
+                  </div>
+                </section>
               );
             })}
           </div>
 
           {/* ---------------------   MODAL for each cream */}
-          <IonModal isOpen={myModal.isOpen}>
-            <h1>This is a modal</h1>
-            <IonButton onClick={() => setMyModal({ isOpen: false })}>
-              Close Modal
-            </IonButton>
+          <IonModal key={creamId} isOpen={creamModal.isOpen}>
+            <h1>This is a modal with ID: {creamId}</h1>
+            <IonButton onClick={() => setCreamModal({ isOpen: false, id: creamId })}>Close Modal</IonButton>
           </IonModal>
         </section>
 
         {/* ---------------------   button opens form modal */}
-        <IonButton
-          color="add-btn"
-          expand="block"
-          className="add-btn"
-          onClick={() => setFormModal({ isOpen: true })}
-        >
+        <IonButton color="add-btn" expand="block" className="add-btn" onClick={() => setFormModal({ isOpen: true })}>
           Add product <IonIcon icon={addOutline} />
         </IonButton>
 
@@ -94,10 +94,7 @@ const MyProducts = () => {
             formModal={formModal}
             setFormModal={setFormModal}
           />
-          <IonButton
-            color="danger"
-            onClick={() => setFormModal({ isOpen: false })}
-          >
+          <IonButton color="danger" onClick={() => setFormModal({ isOpen: false })}>
             Close Modal
           </IonButton>
         </IonModal>
