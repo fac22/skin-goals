@@ -32,7 +32,7 @@ import './theme/variables.css';
 
 const App = () => (
   <IonApp>
-    {/* <PrivateRoutes /> */}
+    <PrivateRoutes />
     <PublicRoutes />
   </IonApp>
 );
