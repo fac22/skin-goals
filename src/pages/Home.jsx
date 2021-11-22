@@ -20,36 +20,37 @@ import {
 } from '@ionic/react';
 import './Home.css';
 import { person } from 'ionicons/icons';
-const Home = () => {
+const Home = ({ user }) => {
   const [registerEmail, setRegisterEmail] = useState('');
   const [registerPassword, setRegisterPassword] = useState('');
-  const [loginEmail, setLoginEmail] = useState('');
-  const [loginPassword, setLoginPassword] = useState('');
-  const [user, setUser] = useState({});
 
-  onAuthStateChanged(auth, (currentUser) => {
-    setUser(currentUser);
-  });
+  // const [loginEmail, setLoginEmail] = useState('');
+  // const [loginPassword, setLoginPassword] = useState('');
+  // const [user, setUser] = useState({});
 
-  const signup = async () => {
-    try {
-      const user = await createUserWithEmailAndPassword(auth, registerEmail, registerPassword);
-      console.log(user);
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
-  const login = async () => {
-    try {
-      const user = await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
-      console.log(user);
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
-  const logout = async () => {
-    await signOut(auth);
-  };
+  // onAuthStateChanged(auth, (currentUser) => {
+  //   setUser(currentUser);
+  // });
+
+  // const signup = async () => {
+  //   try {
+  //     const user = await createUserWithEmailAndPassword(auth, registerEmail, registerPassword);
+  //     console.log(user);
+  //   } catch (error) {
+  //     console.log(error.message);
+  //   }
+  // };
+  // const login = async () => {
+  //   try {
+  //     const user = await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
+  //     console.log(user);
+  //   } catch (error) {
+  //     console.log(error.message);
+  //   }
+  // };
+  // const logout = async () => {
+  //   await signOut(auth);
+  // };
   return (
     <IonPage>
       <IonHeader>
@@ -58,7 +59,7 @@ const Home = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen className="ion-padding">
-        <p>Signup</p>
+        {/* <p>Signup</p>
         <input
           placeholder="email"
           onChange={(e) => {
@@ -89,7 +90,7 @@ const Home = () => {
         <button onClick={login}>login</button>
 
         <p>logged in user: {user?.email}</p>
-        <button onClick={logout}>logout</button>
+        <button onClick={logout}>logout</button> */}
 
         <IonHeader collapse="condense">
           <IonToolbar>
@@ -100,7 +101,7 @@ const Home = () => {
         </IonHeader>
         <IonCard>
           <IonCardHeader>
-            <IonCardSubtitle>Hello user</IonCardSubtitle>
+            <IonCardSubtitle>Hello {user.email}</IonCardSubtitle>
             <IonCardTitle>
               Great skin is not simply a matter of DNA — your daily habits, in fact, have a big impact on what you see
               in the mirror.

@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { Redirect, Route } from 'react-router-dom';
 import { IonApp, IonIcon, IonLabel, IonRouterOutlet, IonTabBar, IonTabButton, IonTabs } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { home, ellipse, fileTrayFullOutline } from 'ionicons/icons';
+import { auth } from './firebase';
+import { onAuthStateChanged } from '@firebase/auth';
 
 import Home from './pages/Home';
 import MyRoutines from './pages/MyRoutines';
@@ -30,12 +32,15 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 
-const App = () => (
-  <IonApp>
-    <PrivateRoutes />
-    <PublicRoutes />
-  </IonApp>
-);
+const App = () => {
+  const [user, setUser] = useState({});
+
+  onAuthStateChanged(auth, (currentUser) => {
+    setUser(currentUser);
+  });
+
+  return <IonApp>{user?.email ? <PublicRoutes user={user} /> : <PrivateRoutes />}</IonApp>;
+};
 
 // const App = () => {
 //   const { store } = React.useContext(MobXProviderContext);
