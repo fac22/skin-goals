@@ -27,7 +27,7 @@ const SignUp = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Create Accout</IonTitle>
+          <IonTitle>Create Account</IonTitle>
           <IonButtons slot="start">
             <IonBackButton />
           </IonButtons>
