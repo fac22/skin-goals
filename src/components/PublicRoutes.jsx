@@ -8,13 +8,13 @@ import Home from '../pages/Home';
 import MyRoutines from '../pages/MyRoutines';
 import MyProducts from '../pages/MyProducts';
 
-const PublicRoutes = () => {
+const PublicRoutes = ({ user }) => {
   return (
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
           <Route exact path="/home">
-            <Home />
+            <Home user={user} />
           </Route>
           <Route exact path="/myRoutines">
             <MyRoutines />
@@ -24,6 +24,12 @@ const PublicRoutes = () => {
           </Route>
 
           <Route exact path="/">
+            <Redirect to="/home" />
+          </Route>
+          <Route exact path="/login">
+            <Redirect to="/home" />
+          </Route>
+          <Route exact path="/signup">
             <Redirect to="/home" />
           </Route>
         </IonRouterOutlet>

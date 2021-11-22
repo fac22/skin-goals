@@ -17,7 +17,19 @@ const PrivateRoutes = () => {
         <Route exact path="/signup">
           <SignUp />
         </Route>
-        {/* <Route path="/" render={() => <Redirect to="/login" />} /> */}
+
+        <Route exact path="/">
+          <Redirect to="/login" />
+        </Route>
+        <Route exact path="/home">
+          <Redirect to="/login" />
+        </Route>
+        <Route exact path="/myProducts">
+          <Redirect to="/login" />
+        </Route>
+        <Route exact path="/myRoutines">
+          <Redirect to="/login" />
+        </Route>
       </IonRouterOutlet>
     </IonReactRouter>
   );
