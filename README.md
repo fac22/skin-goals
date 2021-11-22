@@ -28,7 +28,17 @@ How did you decide what features were important?
 
 ## Requirement analysis
 
+- We are using the `Ionic` framework, which provides semantic HTML elements. This should make our application easily readable by screen-readers.
+
 ## Project learnings
+### Routing in `Ionic`
+- The `Ionic` framework relies on the native `React` router. 
+- The `<IonReactRouter>` wraps the `<Route>` elements.
+
+### Coming up...
+- Drag & Drop
+- CSS 
+- State management 
 
 ## Research and findings
 
