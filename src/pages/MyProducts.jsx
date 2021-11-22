@@ -1,5 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import { ref, onValue } from 'firebase/database';
+import { db } from '../firebase';
 
 import {
   IonContent,
@@ -37,6 +39,19 @@ const MyProducts = () => {
   const [formModal, setFormModal] = useState({ isOpen: false });
 
   const [creamId, setCreamId] = useState(0);
+
+  // ---------- temp userId
+  const uid = 'OYPt78y2KvONnB1RSwVi142FRt12';
+
+  // ------------ reading from realtime database
+  useEffect(() => {
+    const productsRef = ref(db, 'users/' + uid + '/products');
+    onValue(productsRef, (snapshot) => {
+      const productsData = snapshot.val();
+      console.log(productsData);
+      // updateStarCount(postElement, data);
+    });
+  });
 
   return (
     <IonPage>
