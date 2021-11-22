@@ -11,7 +11,7 @@ import Home from './pages/Home';
 import MyRoutines from './pages/MyRoutines';
 import MyProducts from './pages/MyProducts';
 import PrivateRoutes from './components/PrivateRoutes';
-import PublicRoutes from './components/ PublicRoutes';
+import PublicRoutes from './components/PublicRoutes';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -41,17 +41,5 @@ const App = () => {
 
   return <IonApp>{user?.email ? <PublicRoutes user={user} /> : <PrivateRoutes />}</IonApp>;
 };
-
-// const App = () => {
-//   const { store } = React.useContext(MobXProviderContext);
-
-//   return !store.authCheckComplete ? (
-//     <IonApp>
-//       <IonLoading message="Starting App..." />
-//     </IonApp>
-//   ) : (
-//     <IonApp>{store.authenticatedUser ? <PublicRoutes /> : <PrivateRoutes />}</IonApp>
-//   );
-// };
 
 export default App;

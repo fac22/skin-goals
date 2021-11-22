@@ -24,20 +24,15 @@ const LogIn = () => {
   const [loginPassword, setLoginPassword] = useState('');
   // const history = useHistory();
 
+  // const goHome = () => {
+  //   return history.push('/home');
+  // };
+
   const login = async () => {
     try {
       const user = await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
       console.log(user);
-      return (
-        <IonReactRouter>
-          <IonRouterOutlet>
-            <Route exact path="/home">
-              <Home user={user} />
-            </Route>
-          </IonRouterOutlet>
-        </IonReactRouter>
-      );
-      // return history.push('/home');
+      // goHome();
     } catch (error) {
       console.log(error.message);
     }
@@ -87,9 +82,8 @@ const LogIn = () => {
           >
             Login
           </IonButton>
-          {/* {isAuth ? "Logged In" : "Login"} */}
           <p> New here? </p>
-          <IonButton href="/login">Create Account</IonButton>
+          <IonButton href="/signup">Create Account</IonButton>
         </div>
       </IonContent>
     </IonPage>

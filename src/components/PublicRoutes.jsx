@@ -26,6 +26,12 @@ const PublicRoutes = ({ user }) => {
           <Route exact path="/">
             <Redirect to="/home" />
           </Route>
+          <Route exact path="/login">
+            <Redirect to="/home" />
+          </Route>
+          <Route exact path="/signup">
+            <Redirect to="/home" />
+          </Route>
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
           <IonTabButton tab="home" href="/home">
