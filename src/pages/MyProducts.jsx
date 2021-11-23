@@ -33,6 +33,10 @@ import './MyProducts.css';
 const MyProducts = ({user}) => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
+  const [opened, setOpened] = useState('');
+  const [pao, setPao] = useState('');
+  const [volume, setVolume] = useState('');
+  const [price, setPrice] = useState('');
 
   const [creams, setCreams] = useState([...CreamsData]);
   const [creamModal, setCreamModal] = useState({ isOpen: false, id: 0 });
@@ -105,8 +109,14 @@ const MyProducts = ({user}) => {
             description={description}
             setName={setName}
             setDescription={setDescription}
-            creams={creams}
-            setCreams={setCreams}
+            opened={opened}
+            setOpened={setOpened}
+            pao={pao}
+            setPao={setPao}
+            volume={volume}
+            setVolume={setVolume}
+            price={price}
+            setPrice={setPrice}
             formModal={formModal}
             setFormModal={setFormModal}
             uid={uid}
