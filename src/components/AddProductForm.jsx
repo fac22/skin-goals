@@ -37,7 +37,7 @@ set(ref(db, 'users/' + uid + `/products/${productsIdx}`), {
         </IonItem>
 
         <IonItem>
-          <IonLabel position="floating">Product Description</IonLabel>
+          <IonLabel position="floating">Description</IonLabel>
           <IonTextarea
             value={description}
             placeholder="Product description"
