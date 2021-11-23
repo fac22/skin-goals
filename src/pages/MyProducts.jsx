@@ -30,7 +30,7 @@ import './MyProducts.css';
 //   creamsArr.push(cream.name);
 // });
 
-const MyProducts = () => {
+const MyProducts = ({user}) => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
 
@@ -41,7 +41,7 @@ const MyProducts = () => {
   const [creamId, setCreamId] = useState(0);
 
   // ---------- temp userId
-  const uid = 'OYPt78y2KvONnB1RSwVi142FRt12';
+  const uid = user.uid;
 
   // ------------ reading from realtime database
   useEffect(() => {
@@ -109,6 +109,7 @@ const MyProducts = () => {
             setCreams={setCreams}
             formModal={formModal}
             setFormModal={setFormModal}
+            uid={uid}
           />
           <IonButton color="danger" onClick={() => setFormModal({ isOpen: false })}>
             Close Modal
