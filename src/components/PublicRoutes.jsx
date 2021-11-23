@@ -18,7 +18,7 @@ const PublicRoutes = ({ user }) => {
             <Home user={user} />
           </Route>
           <Route exact path="/myRoutines">
-            <MyRoutines />
+            <MyRoutines user={user} />
           </Route>
           <Route exact path="/routineBuilder">
             <RoutineBuilder />
