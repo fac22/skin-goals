@@ -69,7 +69,7 @@ const MyProducts = ({ user }) => {
       <IonContent fullscreen>
         {/* <ExploreContainer name="Tab 3 page" /> */}
         <section>
-          {/* ---------------------   RENDERS all product info on page */}
+          {/* -----------------------------------------------------   RENDERS all product info on page */}
           <div className="grid">
             {productsData.map((cream, index) => {
               return (
@@ -89,31 +89,41 @@ const MyProducts = ({ user }) => {
             })}
           </div>
 
-          {/* ---------------------   MODAL for each cream */}
+          {/* -----------------------------------------------------   MODAL for each cream */}
           <IonModal key={creamId} isOpen={creamModal.isOpen}>
             {/* <h1>This is a modal with ID: {creamId}</h1> */}
-            <div>
-              <h3>Description 📝</h3>
+            <div className="modal">
+              <h3>
+                <span className="label-text">Description</span> 📝
+              </h3>
               <p>{creamModal.isOpen ? productsData[creamId].description : '-'}</p>
             </div>
 
-            <div>
-              <h3>Open date 📆</h3>
-              <p>{ creamModal.isOpen ? productsData[creamId].opened : '-'}</p>
+            <div className="modal">
+              <h3>
+                <span className="label-text">Open date</span> 📆
+              </h3>
+              <p>{creamModal.isOpen ? productsData[creamId].opened : '-'}</p>
             </div>
 
-            <div>
-              <h3>PAO 🌽</h3>
+            <div className="modal">
+              <h3>
+                <span className="label-text">PAO</span> 🌽
+              </h3>
               <p>{creamModal.isOpen ? productsData[creamId].pao : '-'}</p>
             </div>
 
-            <div>
-              <h3>Price 💷</h3>
+            <div className="modal">
+              <h3>
+                <span className="label-text">Price</span> 💷
+              </h3>
               <p>{creamModal.isOpen ? productsData[creamId].price : '-'}</p>
             </div>
 
-            <div>
-              <h3>Volume 🧴</h3>
+            <div className="modal">
+              <h3>
+                <span className="label-text">Volume</span> 🧴
+              </h3>
               <p>{creamModal.isOpen ? productsData[creamId].volume : '-'}</p>
             </div>
 
@@ -121,12 +131,12 @@ const MyProducts = ({ user }) => {
           </IonModal>
         </section>
 
-        {/* ---------------------   button opens form modal */}
+        {/* -----------------------------------------------------   button opens form modal */}
         <IonButton color="add-btn" expand="block" className="add-btn" onClick={() => setFormModal({ isOpen: true })}>
           Add product <IonIcon icon={addOutline} />
         </IonButton>
 
-        {/* ---------------------   FORM MODAL to add a new product*/}
+        {/* -----------------------------------------------------   FORM MODAL to add a new product*/}
         <IonModal isOpen={formModal.isOpen}>
           <AddProductForm
             name={name}
