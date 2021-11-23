@@ -6,7 +6,6 @@ import { home, ellipse, fileTrayFullOutline } from 'ionicons/icons';
 
 import Home from '../pages/Home';
 import MyRoutines from '../pages/MyRoutines';
-import RoutineBuilder from '../pages/RoutineBuilder';
 import MyProducts from '../pages/MyProducts';
 
 const PublicRoutes = ({ user }) => {
@@ -19,9 +18,6 @@ const PublicRoutes = ({ user }) => {
           </Route>
           <Route exact path="/myRoutines">
             <MyRoutines user={user} />
-          </Route>
-          <Route exact path="/routineBuilder">
-            <RoutineBuilder />
           </Route>
           <Route path="/myProducts">
             <MyProducts user={user} />

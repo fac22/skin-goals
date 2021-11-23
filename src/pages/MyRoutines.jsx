@@ -11,14 +11,17 @@ import {
   IonSlides,
   IonSlide,
   IonList,
+  IonModal,
 } from '@ionic/react';
 import { ref, onValue } from '@firebase/database';
 import { db } from '../firebase';
 import './MyRoutines.css';
+import RoutineBuilder from '../components/RoutineBuilder';
 
 const MyRoutines = ({ user }) => {
   const [routines, setRoutines] = useState([]);
   const [products, setProducts] = useState([]);
+  const [modal, setModal] = useState({ isOpen: false });
 
   const uid = user.uid;
 
@@ -68,9 +71,26 @@ const MyRoutines = ({ user }) => {
         ) : (
           <p>You have no routines!</p>
         )}
-        <IonButton expand="full" style={{ margin: 14 }}>
+        <IonButton
+          expand="full"
+          style={{ margin: 14 }}
+          onClick={() => {
+            setModal({ isOpen: true });
+          }}
+        >
           Create new routine
         </IonButton>
+        <IonModal isOpen={modal.isOpen}>
+          <RoutineBuilder user={user} />
+          <IonButton>Save Routine</IonButton>
+          <IonButton
+            onClick={() => {
+              setModal({ isOpen: false });
+            }}
+          >
+            Close
+          </IonButton>
+        </IonModal>
       </IonContent>
     </IonPage>
   );

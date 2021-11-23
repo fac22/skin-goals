@@ -1,10 +1,8 @@
 import React from 'react';
-
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import { DragDropContext } from 'react-beautiful-dnd';
 
 // import ProductCarousel from '../components/ProductCarousel';
-import RoutineList from '../components/RoutineList';
+import RoutineList from './RoutineList';
 
 // const slideOpts = {
 //   initialSlide: 1,
@@ -31,7 +29,7 @@ let exampleData = {
   },
 };
 
-const RoutineBuilder = () => {
+const RoutineBuilder = ({ user }) => {
   const [data, setData] = React.useState(exampleData);
 
   console.log(data.columns.routine.productIds.map((id) => data.products[id].name));
@@ -102,33 +100,18 @@ const RoutineBuilder = () => {
   }
 
   return (
-    <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>Routines</IonTitle>
-        </IonToolbar>
-      </IonHeader>
-      <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Routines</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-
-        <DragDropContext onDragEnd={onDragEnd}>
-          <h2>Products</h2>
-          {/* <ProductCarousel
+    <DragDropContext onDragEnd={onDragEnd}>
+      <h2>Products</h2>
+      {/* <ProductCarousel
             key={productColumn.id}
             column={productColumn}
             products={productColumnProducts}
             slideOpts={slideOpts}
           /> */}
-          <RoutineList key={productColumn.id} column={productColumn} products={productColumnProducts} />
-          <h2>Routine</h2>
-          <RoutineList key={routineColumn.id} column={routineColumn} products={routineColumnProducts} />
-        </DragDropContext>
-      </IonContent>
-    </IonPage>
+      <RoutineList key={productColumn.id} column={productColumn} products={productColumnProducts} />
+      <h2>Routine</h2>
+      <RoutineList key={routineColumn.id} column={routineColumn} products={routineColumnProducts} />
+    </DragDropContext>
   );
 };
 
