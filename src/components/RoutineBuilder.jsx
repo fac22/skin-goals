@@ -143,7 +143,7 @@ const RoutineBuilder = ({ products, routines, setModal }) => {
                   .filter((p) => p.name === product)
                   .map((e) => parseInt(e.id))[0]
               );
-            }
+            });
             console.log(dataToWrite);
           } else {
             setModal({ isOpen: false });
