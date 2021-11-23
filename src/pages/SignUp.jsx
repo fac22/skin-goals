@@ -13,7 +13,8 @@ import {
   IonTitle,
 } from '@ionic/react';
 import { createUserWithEmailAndPassword } from '@firebase/auth';
-import { auth } from '../firebase';
+import { auth, db } from '../firebase';
+import { ref, set } from 'firebase/database';
 
 const SignUp = () => {
   const [registerEmail, setRegisterEmail] = useState('');
@@ -23,6 +24,13 @@ const SignUp = () => {
     try {
       const user = await createUserWithEmailAndPassword(auth, registerEmail, registerPassword);
       console.log(user);
+      const uid = user.user.uid;
+      const userDataToWrite = {
+        products: ['No Products'],
+        routines: { 'No Routines': 'No Routines' },
+      };
+      console.log(userDataToWrite);
+      await set(ref(db, 'users/' + uid), userDataToWrite);
     } catch (error) {
       console.log(error.message);
     }
