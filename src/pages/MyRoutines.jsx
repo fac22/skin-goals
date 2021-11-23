@@ -81,8 +81,7 @@ const MyRoutines = ({ user }) => {
           Create new routine
         </IonButton>
         <IonModal isOpen={modal.isOpen}>
-          <RoutineBuilder products={products} routines={routines} />
-          <IonButton>Save Routine</IonButton>
+          <RoutineBuilder products={products} routines={routines} setModal={setModal} />
           <IonButton
             onClick={() => {
               setModal({ isOpen: false });

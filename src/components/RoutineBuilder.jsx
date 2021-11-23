@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
+import { IonButton } from '@ionic/react';
 
 // import ProductCarousel from '../components/ProductCarousel';
 import RoutineList from './RoutineList';
@@ -29,9 +30,8 @@ let exampleData = {
   },
 };
 
-const RoutineBuilder = ({ products, routines }) => {
+const RoutineBuilder = ({ products, routines, setModal }) => {
   const [data, setData] = useState(exampleData);
-  console.log(products, routines);
 
   useEffect(() => {
     const productsObj = {};
@@ -52,8 +52,6 @@ const RoutineBuilder = ({ products, routines }) => {
     const initialData = { products: { ...productsObj }, columns: { ...columnsObj } };
     setData(initialData);
   }, []);
-
-  console.log(data.columns.routine.productIds.map((id) => data.products[id].name));
 
   const productColumn = data.columns.products;
   const routineColumn = data.columns.routine;
@@ -121,18 +119,40 @@ const RoutineBuilder = ({ products, routines }) => {
   }
 
   return (
-    <DragDropContext onDragEnd={onDragEnd}>
-      <h2>Products</h2>
-      {/* <ProductCarousel
+    <>
+      <DragDropContext onDragEnd={onDragEnd}>
+        <h2>Products</h2>
+        {/* <ProductCarousel
             key={productColumn.id}
             column={productColumn}
             products={productColumnProducts}
             slideOpts={slideOpts}
           /> */}
-      <RoutineList key={productColumn.id} column={productColumn} products={productColumnProducts} />
-      <h2>Routine</h2>
-      <RoutineList key={routineColumn.id} column={routineColumn} products={routineColumnProducts} />
-    </DragDropContext>
+        <RoutineList key={productColumn.id} column={productColumn} products={productColumnProducts} />
+        <h2>Routine</h2>
+        <RoutineList key={routineColumn.id} column={routineColumn} products={routineColumnProducts} />
+      </DragDropContext>
+      <IonButton
+        onClick={() => {
+          const newRoutine = data.columns.routine.productIds.map((id) => data.products[id].name);
+          if (newRoutine.length) {
+            const dataToWrite = [];
+            newRoutine.forEach((product) => {
+              dataToWrite.push(
+                Object.values(products)
+                  .filter((p) => p.name === product)
+                  .map((e) => parseInt(e.id))[0]
+              );
+            }
+            console.log(dataToWrite);
+          } else {
+            setModal({ isOpen: false });
+          }
+        }}
+      >
+        Save Routine
+      </IonButton>
+    </>
   );
 };
 
