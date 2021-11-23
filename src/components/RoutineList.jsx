@@ -2,6 +2,7 @@ import { IonList } from '@ionic/react';
 import { Droppable } from 'react-beautiful-dnd';
 // import Product from './ProductSlide';
 import ProductListItem from './ProductListItem';
+import './RoutineList.css';
 
 const RoutineList = ({ products, column }) => {
   return (

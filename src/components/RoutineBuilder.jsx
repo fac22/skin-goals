@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
 
 // import ProductCarousel from '../components/ProductCarousel';
@@ -29,8 +29,29 @@ let exampleData = {
   },
 };
 
-const RoutineBuilder = ({ user }) => {
-  const [data, setData] = React.useState(exampleData);
+const RoutineBuilder = ({ products, routines }) => {
+  const [data, setData] = useState(exampleData);
+  console.log(products, routines);
+
+  useEffect(() => {
+    const productsObj = {};
+    const columnsObj = {
+      products: {
+        id: 'products',
+        productIds: [],
+      },
+      routine: {
+        id: 'routine',
+        productIds: [],
+      },
+    };
+    products.forEach((product, i) => {
+      productsObj[i] = { id: i.toString(), name: product.name };
+      columnsObj.products.productIds.push(i.toString());
+    });
+    const initialData = { products: { ...productsObj }, columns: { ...columnsObj } };
+    setData(initialData);
+  }, []);
 
   console.log(data.columns.routine.productIds.map((id) => data.products[id].name));
 
