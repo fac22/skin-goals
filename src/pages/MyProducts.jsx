@@ -3,32 +3,11 @@ import { useState, useEffect } from 'react';
 import { ref, onValue } from 'firebase/database';
 import { db } from '../firebase';
 
-import {
-  IonContent,
-  IonGrid,
-  IonRow,
-  IonCol,
-  IonHeader,
-  IonPage,
-  IonTitle,
-  IonToolbar,
-  IonButton,
-  IonIcon,
-  IonInput,
-  useIonModal,
-  IonItem,
-  IonModal,
-} from '@ionic/react';
-import { addOutline, cloudDoneOutline } from 'ionicons/icons';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton, IonIcon, IonModal } from '@ionic/react';
+import { addOutline } from 'ionicons/icons';
 import AddProductForm from '../components/AddProductForm';
 
-import CreamsData from '../creams-data.js';
 import './MyProducts.css';
-
-// const creamsArr = [];
-// CreamsData.forEach((cream) => {
-//   creamsArr.push(cream.name);
-// });
 
 const MyProducts = ({ user }) => {
   const [name, setName] = useState('');
@@ -40,15 +19,13 @@ const MyProducts = ({ user }) => {
 
   const [productsData, setProductsData] = useState([]);
 
-  const [creams, setCreams] = useState([...CreamsData]);
-  const [creamModal, setCreamModal] = useState({ isOpen: false, id: 0 });
+  const [creamModal, setCreamModal] = useState({ isOpen: false });
   const [formModal, setFormModal] = useState({ isOpen: false });
 
   const [creamId, setCreamId] = useState(0);
 
   // ---------- temp userId
   const uid = user.uid;
-  // console.log(`this is the user id ${uid}`);
 
   // ------------ reading from realtime database
   useEffect(() => {
@@ -78,7 +55,7 @@ const MyProducts = ({ user }) => {
                     key={index}
                     onClick={() => {
                       setCreamId(index);
-                      setCreamModal({ isOpen: true, id: cream.id });
+                      setCreamModal({ isOpen: true });
                     }}
                     className="cream"
                   >
@@ -127,7 +104,7 @@ const MyProducts = ({ user }) => {
               <p>{creamModal.isOpen ? productsData[creamId].volume : '-'}</p>
             </div>
 
-            <IonButton onClick={() => setCreamModal({ isOpen: false, id: creamId })}>Close Modal</IonButton>
+            <IonButton onClick={() => setCreamModal({ isOpen: false })}>Close Modal</IonButton>
           </IonModal>
         </section>
 
