@@ -48,7 +48,7 @@ const MyProducts = ({ user }) => {
 
   // ---------- temp userId
   const uid = user.uid;
-  console.log(`this is the user id ${uid}`);
+  // console.log(`this is the user id ${uid}`);
 
   // ------------ reading from realtime database
   useEffect(() => {
@@ -56,8 +56,6 @@ const MyProducts = ({ user }) => {
     onValue(productsRef, (snapshot) => {
       setProductsData(snapshot.val());
     });
-    // return productsData;
-    console.log('this is data, as returned from database', productsData);
   }, []);
 
   return (
@@ -93,7 +91,32 @@ const MyProducts = ({ user }) => {
 
           {/* ---------------------   MODAL for each cream */}
           <IonModal key={creamId} isOpen={creamModal.isOpen}>
-            <h1>This is a modal with ID: {creamId}</h1>
+            {/* <h1>This is a modal with ID: {creamId}</h1> */}
+            <div>
+              <h3>Description 📝</h3>
+              <p>{creamModal.isOpen ? productsData[creamId].description : '-'}</p>
+            </div>
+
+            <div>
+              <h3>Open date 📆</h3>
+              <p>{ creamModal.isOpen ? productsData[creamId].opened : '-'}</p>
+            </div>
+
+            <div>
+              <h3>PAO 🌽</h3>
+              <p>{creamModal.isOpen ? productsData[creamId].pao : '-'}</p>
+            </div>
+
+            <div>
+              <h3>Price 💷</h3>
+              <p>{creamModal.isOpen ? productsData[creamId].price : '-'}</p>
+            </div>
+
+            <div>
+              <h3>Volume 🧴</h3>
+              <p>{creamModal.isOpen ? productsData[creamId].volume : '-'}</p>
+            </div>
+
             <IonButton onClick={() => setCreamModal({ isOpen: false, id: creamId })}>Close Modal</IonButton>
           </IonModal>
         </section>
