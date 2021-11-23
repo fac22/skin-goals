@@ -9,7 +9,7 @@ import creamsArr from '../creams-data.js';
 let productsIdx = 0;
 
 
-const AddProductForm = ({ name, description, setName, setDescription, opened, setOpened, creams, setCreams, formModal, setFormModal, uid }) => {
+const AddProductForm = ({ name, description, setName, setDescription, opened, setOpened, pao, setPao, volume, setVolume, price, setPrice, creams, setCreams, formModal, setFormModal, uid }) => {
 
 const readFromDatabase = () => {
 const productsRef = ref(db, 'users/' + uid + '/products/');
@@ -67,6 +67,21 @@ set(ref(db, 'users/' + uid + `/products/${productsIdx}`), {
           <IonLabel position="floating">Open date</IonLabel>
           <IonInput value={opened} placeholder="Open date" onIonChange={(e) => setOpened(e.detail.value)} />
         </IonItem>
+
+        <IonItem>
+          <IonLabel position="floating">PAO</IonLabel>
+          <IonInput value={pao} placeholder="Open date" onIonChange={(e) => setPao(e.detail.value)} />
+        </IonItem>
+
+        <IonItem>
+          <IonLabel position="floating">Volume</IonLabel>
+          <IonInput value={volume} placeholder="Open date" onIonChange={(e) => setVolume(e.detail.value)} />
+        </IonItem>
+        
+        <IonItem>
+          <IonLabel position="floating">Price</IonLabel>
+          <IonInput value={price} placeholder="Open date" onIonChange={(e) => setPrice(e.detail.value)} />
+        </IonItem>
       </IonList>
 
       <IonButton
@@ -79,7 +94,7 @@ set(ref(db, 'users/' + uid + `/products/${productsIdx}`), {
           productsIdx = await readFromDatabase().length;
           // console.log('INSIDE CLICK BUTTON', productsArr);
 
-          await writeToDatabase(name, description, opened, 'test', 'test', 'test');
+          await writeToDatabase(name, description, opened, pao, volume, price);
 
           setFormModal({ isOpen: false});
           // console.log(creams);
