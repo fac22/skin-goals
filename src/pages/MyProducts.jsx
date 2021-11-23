@@ -33,6 +33,7 @@ import './MyProducts.css';
 const MyProducts = ({user}) => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
+  const [opened, setOpened] = useState('');
 
   const [creams, setCreams] = useState([...CreamsData]);
   const [creamModal, setCreamModal] = useState({ isOpen: false, id: 0 });
@@ -105,6 +106,8 @@ const MyProducts = ({user}) => {
             description={description}
             setName={setName}
             setDescription={setDescription}
+            opened={opened}
+            setOpened={setOpened}
             creams={creams}
             setCreams={setCreams}
             formModal={formModal}

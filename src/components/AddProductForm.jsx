@@ -6,11 +6,10 @@ import { ref, set, onValue } from 'firebase/database';
 
 import creamsArr from '../creams-data.js';
 
-let productsArr = [];
 let productsIdx = 0;
 
 
-const AddProductForm = ({ name, description, setName, setDescription, creams, setCreams, formModal, setFormModal, uid }) => {
+const AddProductForm = ({ name, description, setName, setDescription, opened, setOpened, creams, setCreams, formModal, setFormModal, uid }) => {
 
 const readFromDatabase = () => {
 const productsRef = ref(db, 'users/' + uid + '/products/');
@@ -63,6 +62,11 @@ set(ref(db, 'users/' + uid + `/products/${productsIdx}`), {
             onIonChange={(e) => setDescription(e.detail.value)}
           />
         </IonItem>
+
+        <IonItem>
+          <IonLabel position="floating">Open date</IonLabel>
+          <IonInput value={opened} placeholder="Open date" onIonChange={(e) => setOpened(e.detail.value)} />
+        </IonItem>
       </IonList>
 
       <IonButton
@@ -75,7 +79,7 @@ set(ref(db, 'users/' + uid + `/products/${productsIdx}`), {
           productsIdx = await readFromDatabase().length;
           // console.log('INSIDE CLICK BUTTON', productsArr);
 
-          await writeToDatabase(name, description, 'test', 'test', 'test', 'test');
+          await writeToDatabase(name, description, opened, 'test', 'test', 'test');
 
           setFormModal({ isOpen: false});
           // console.log(creams);
