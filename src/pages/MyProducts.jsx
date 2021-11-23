@@ -73,14 +73,13 @@ const MyProducts = ({ user }) => {
         <section>
           {/* ---------------------   RENDERS all product info on page */}
           <div className="grid">
-            {productsData.map((cream) => {
+            {productsData.map((cream, index) => {
               return (
                 <section className="cream-wrapper">
                   <div
-                    key={cream.id}
+                    key={index}
                     onClick={() => {
-                      setCreamId(cream.id);
-                      console.log(creamId);
+                      setCreamId(index);
                       setCreamModal({ isOpen: true, id: cream.id });
                     }}
                     className="cream"
