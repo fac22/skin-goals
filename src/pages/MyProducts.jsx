@@ -46,6 +46,7 @@ const MyProducts = () => {
   // ------------ reading from realtime database
   useEffect(() => {
     const productsRef = ref(db, 'users/' + uid + '/products');
+    // console.log(productsRef);
     onValue(productsRef, (snapshot) => {
       const productsData = snapshot.val();
       console.log(productsData);
