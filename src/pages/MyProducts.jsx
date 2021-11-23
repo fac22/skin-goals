@@ -117,8 +117,6 @@ const MyProducts = ({user}) => {
             setVolume={setVolume}
             price={price}
             setPrice={setPrice}
-            creams={creams}
-            setCreams={setCreams}
             formModal={formModal}
             setFormModal={setFormModal}
             uid={uid}

@@ -9,7 +9,7 @@ import creamsArr from '../creams-data.js';
 let productsIdx = 0;
 
 
-const AddProductForm = ({ name, description, setName, setDescription, opened, setOpened, pao, setPao, volume, setVolume, price, setPrice, creams, setCreams, formModal, setFormModal, uid }) => {
+const AddProductForm = ({ name, description, setName, setDescription, opened, setOpened, pao, setPao, volume, setVolume, price, setPrice, formModal, setFormModal, uid }) => {
 
 const readFromDatabase = () => {
 const productsRef = ref(db, 'users/' + uid + '/products/');
@@ -27,24 +27,6 @@ set(ref(db, 'users/' + uid + `/products/${productsIdx}`), {
   name, description, opened, pao, volume, price
 })
  }
-  // let id = () => Math.floor(Math.random() * 1000000);
-  // const creamObj = { id: id, name: '' };
-
-  // const updateObject = (name) => {
-  //   creamObj.id = id();
-  //   creamObj.name = name;
-  //   console.log(creamObj);
-  // };
-
-  // const addCream = async () => {
-  //   await setName(name);
-  //   await setDescription(description);
-  //   await updateObject(name);
-  //   setCreams([...creams, creamObj]);
-
-  //   setName('');
-  //   setDescription('');
-  // };
 
   return (
     <div>
@@ -90,14 +72,9 @@ set(ref(db, 'users/' + uid + `/products/${productsIdx}`), {
         className="add-btn"
         onClick={async (e) => {
           e.preventDefault();
-          // await addCream();
           productsIdx = await readFromDatabase().length;
-          // console.log('INSIDE CLICK BUTTON', productsArr);
-
           await writeToDatabase(name, description, opened, pao, volume, price);
-
           setFormModal({ isOpen: false});
-          // console.log(creams);
         }}
       >
         Submit product information
