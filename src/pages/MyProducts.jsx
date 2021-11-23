@@ -30,13 +30,15 @@ import './MyProducts.css';
 //   creamsArr.push(cream.name);
 // });
 
-const MyProducts = ({user}) => {
+const MyProducts = ({ user }) => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [opened, setOpened] = useState('');
   const [pao, setPao] = useState('');
   const [volume, setVolume] = useState('');
   const [price, setPrice] = useState('');
+
+  const [productsData, setProductsData] = useState([]);
 
   const [creams, setCreams] = useState([...CreamsData]);
   const [creamModal, setCreamModal] = useState({ isOpen: false, id: 0 });
@@ -46,17 +48,17 @@ const MyProducts = ({user}) => {
 
   // ---------- temp userId
   const uid = user.uid;
+  console.log(`this is the user id ${uid}`);
 
   // ------------ reading from realtime database
   useEffect(() => {
-    const productsRef = ref(db, 'users/' + uid + '/products');
-    // console.log(productsRef);
+    const productsRef = ref(db, 'users/' + uid + '/products/');
     onValue(productsRef, (snapshot) => {
-      const productsData = snapshot.val();
-      console.log(productsData);
-      // updateStarCount(postElement, data);
+      setProductsData(snapshot.val());
     });
-  });
+    // return productsData;
+    console.log('this is data, as returned from database', productsData);
+  }, []);
 
   return (
     <IonPage>
@@ -71,7 +73,7 @@ const MyProducts = ({user}) => {
         <section>
           {/* ---------------------   RENDERS all product info on page */}
           <div className="grid">
-            {creams.map((cream) => {
+            {productsData.map((cream) => {
               return (
                 <section className="cream-wrapper">
                   <div
