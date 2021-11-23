@@ -16,17 +16,8 @@ import { createUserWithEmailAndPassword } from '@firebase/auth';
 import { auth } from '../firebase';
 
 const SignUp = () => {
-  // const [email, setEmail] = React.useState('');
-  // const [password, setPassword] = React.useState('');
-  // const [cpassword, setCPassword] = React.useState('');
-  // const [username, setUsername] = React.useState('');
-
   const [registerEmail, setRegisterEmail] = useState('');
   const [registerPassword, setRegisterPassword] = useState('');
-
-  // function createAccount() {
-  //   console.log(username, email, password);
-  // }
 
   const signup = async () => {
     try {
