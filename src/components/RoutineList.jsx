@@ -3,7 +3,7 @@ import { Droppable } from 'react-beautiful-dnd';
 // import Product from './ProductSlide';
 import ProductListItem from './ProductListItem';
 
-const RoutineBuilder = ({ products, column }) => {
+const RoutineList = ({ products, column }) => {
   return (
     <Droppable droppableId={column.id}>
       {(provided) => (
@@ -20,4 +20,4 @@ const RoutineBuilder = ({ products, column }) => {
   );
 };
 
-export default RoutineBuilder;
+export default RoutineList;
