@@ -13,25 +13,24 @@ import {
   IonTitle,
 } from '@ionic/react';
 import { createUserWithEmailAndPassword } from '@firebase/auth';
-import { auth } from '../firebase';
+import { auth, db } from '../firebase';
+import { ref, set } from 'firebase/database';
 
 const SignUp = () => {
-  // const [email, setEmail] = React.useState('');
-  // const [password, setPassword] = React.useState('');
-  // const [cpassword, setCPassword] = React.useState('');
-  // const [username, setUsername] = React.useState('');
-
   const [registerEmail, setRegisterEmail] = useState('');
   const [registerPassword, setRegisterPassword] = useState('');
-
-  // function createAccount() {
-  //   console.log(username, email, password);
-  // }
 
   const signup = async () => {
     try {
       const user = await createUserWithEmailAndPassword(auth, registerEmail, registerPassword);
       console.log(user);
+      const uid = user.user.uid;
+      const userDataToWrite = {
+        products: ['No Products'],
+        routines: { 'No Routines': 'No Routines' },
+      };
+      console.log(userDataToWrite);
+      await set(ref(db, 'users/' + uid), userDataToWrite);
     } catch (error) {
       console.log(error.message);
     }
