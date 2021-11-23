@@ -7,9 +7,6 @@ import { home, ellipse, fileTrayFullOutline } from 'ionicons/icons';
 import { auth } from './firebase';
 import { onAuthStateChanged } from '@firebase/auth';
 
-import Home from './pages/Home';
-import MyRoutines from './pages/MyRoutines';
-import MyProducts from './pages/MyProducts';
 import PrivateRoutes from './components/PrivateRoutes';
 import PublicRoutes from './components/PublicRoutes';
 
