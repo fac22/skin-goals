@@ -20,7 +20,7 @@ const PublicRoutes = ({ user }) => {
             <MyRoutines />
           </Route>
           <Route path="/myProducts">
-            <MyProducts />
+            <MyProducts user={user} />
           </Route>
 
           <Route exact path="/">
