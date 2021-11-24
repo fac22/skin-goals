@@ -75,44 +75,49 @@ const MyProducts = ({ user }) => {
           </div>
 
           {/* -----------------------------------------------------   MODAL for each cream */}
-          <IonModal key={creamId} isOpen={creamModal.isOpen}>
+          <IonModal className="product-modal" key={creamId} isOpen={creamModal.isOpen}>
             {/* <h1>This is a modal with ID: {creamId}</h1> */}
-            <div className="modal">
-              <h3>
-                <span className="label-text">Description</span> 📝
-              </h3>
-              <p>{creamModal.isOpen ? productsArray[creamId].description : '-'}</p>
-            </div>
+            <section className="modal-open">
+              <div className="modal">
+                <h3>
+                  <span className="label-text">Description</span> 📝
+                </h3>
+                <p>{creamModal.isOpen ? productsArray[creamId].description : '-'}</p>
+              </div>
 
-            <div className="modal">
-              <h3>
-                <span className="label-text">Open date</span> 📆
-              </h3>
-              <p>{creamModal.isOpen ? productsArray[creamId].opened : '-'}</p>
-            </div>
+              <div className="modal">
+                <h3>
+                  <span className="label-text">Open date</span> 📆
+                </h3>
+                <p>{creamModal.isOpen ? productsArray[creamId].opened : '-'}</p>
+              </div>
 
-            <div className="modal">
-              <h3>
-                <span className="label-text">PAO</span> 🌽
-              </h3>
-              <p>{creamModal.isOpen ? productsArray[creamId].pao : '-'}</p>
-            </div>
+              <div className="modal">
+                <h3>
+                  <span className="label-text">PAO</span> 🌽
+                </h3>
+                <p>{creamModal.isOpen ? productsArray[creamId].pao : '-'}</p>
+              </div>
 
-            <div className="modal">
-              <h3>
-                <span className="label-text">Price</span> 💷
-              </h3>
-              <p>{creamModal.isOpen ? productsArray[creamId].price : '-'}</p>
-            </div>
+              <div className="modal">
+                <h3>
+                  <span className="label-text">Price</span> 💷
+                </h3>
+                <p>{creamModal.isOpen ? productsArray[creamId].price : '-'}</p>
+              </div>
 
-            <div className="modal">
-              <h3>
-                <span className="label-text">Volume</span> 🧴
-              </h3>
-              <p>{creamModal.isOpen ? productsArray[creamId].volume : '-'}</p>
-            </div>
+              <div className="modal">
+                <h3>
+                  <span className="label-text">Volume</span> 🧴
+                </h3>
+                <p>{creamModal.isOpen ? productsArray[creamId].volume : '-'}</p>
+              </div>
+            </section>
 
-            <IonButton onClick={() => setCreamModal({ isOpen: false })}>Close Modal</IonButton>
+            <section className='modal-buttons'>
+              <IonButton onClick={() => setCreamModal({ isOpen: false })}>Close Modal</IonButton>
+              <IonButton> Delete Product</IonButton>
+            </section>
           </IonModal>
         </section>
 

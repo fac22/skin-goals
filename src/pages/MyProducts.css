@@ -35,6 +35,18 @@
   padding: 1rem;
 }
 
+.modal-open > * + * {
+  /* padding: 1rem; */
+  /* height: 85vh;
+  overflow: wrap; */
+  margin-top: -3rem;
+}
+
+.modal-buttons {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .label-text {
   background: -webkit-linear-gradient(var(--light-veraman), var(--soft-yellow));
   -webkit-background-clip: text;
