@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { ref, onValue } from 'firebase/database';
+import { ref, onValue, remove, set, update } from 'firebase/database';
 import { db } from '../firebase';
 
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton, IonIcon, IonModal } from '@ionic/react';
@@ -27,6 +27,18 @@ const MyProducts = ({ user }) => {
 
   // ---------- temp userId
   const uid = user.uid;
+
+  // ---------------------------- delete product
+  const deleteProduct = (key) => {
+    // db.database().ref(`users/${uid}/products/${key}`).remove();
+    // console.log('product key is', typeof key);
+    console.log('product key is', key);
+
+    const nodeToDelete = ref(db, `users/${uid}/products/${key}`);
+    remove(nodeToDelete);
+
+    // set(ref(db, `users/${uid}/products/${key}`), null);
+  };
 
   // ------------ reading from realtime database
   useEffect(() => {
@@ -82,41 +94,48 @@ const MyProducts = ({ user }) => {
                 <h3>
                   <span className="label-text">Description</span> 📝
                 </h3>
-                <p>{creamModal.isOpen ? productsArray[creamId].description : '-'}</p>
+                <p>{creamModal?.isOpen ? productsArray[creamId].description : '-'}</p>
               </div>
 
               <div className="modal">
                 <h3>
                   <span className="label-text">Open date</span> 📆
                 </h3>
-                <p>{creamModal.isOpen ? productsArray[creamId].opened : '-'}</p>
+                <p>{creamModal?.isOpen ? productsArray[creamId].opened : '-'}</p>
               </div>
 
               <div className="modal">
                 <h3>
                   <span className="label-text">PAO</span> 🌽
                 </h3>
-                <p>{creamModal.isOpen ? productsArray[creamId].pao : '-'}</p>
+                <p>{creamModal?.isOpen ? productsArray[creamId].pao : '-'}</p>
               </div>
 
               <div className="modal">
                 <h3>
                   <span className="label-text">Price</span> 💷
                 </h3>
-                <p>{creamModal.isOpen ? productsArray[creamId].price : '-'}</p>
+                <p>{creamModal?.isOpen ? productsArray[creamId].price : '-'}</p>
               </div>
 
               <div className="modal">
                 <h3>
                   <span className="label-text">Volume</span> 🧴
                 </h3>
-                <p>{creamModal.isOpen ? productsArray[creamId].volume : '-'}</p>
+                <p>{creamModal?.isOpen ? productsArray[creamId].volume : '-'}</p>
               </div>
             </section>
 
-            <section className='modal-buttons'>
+            <section className="modal-buttons">
               <IonButton onClick={() => setCreamModal({ isOpen: false })}>Close Modal</IonButton>
-              <IonButton> Delete Product</IonButton>
+              <IonButton
+                onClick={async () => {
+                  await setCreamModal({ isOpen: false });
+                  deleteProduct(productsArray[creamId].id);
+                }}
+              >
+                Delete Product
+              </IonButton>
             </section>
           </IonModal>
         </section>
