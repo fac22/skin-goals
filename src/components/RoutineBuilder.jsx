@@ -118,7 +118,7 @@ const RoutineBuilder = ({ products, setModal, uid }) => {
   }
 
   function writeRoutine(newRoutine) {
-    const routineData = { newRoutine, name: newRoutineName };
+    const routineData = { productIds: newRoutine, name: newRoutineName };
     const newRoutineKey = push(child(ref(db), 'routines')).key;
     routineData.id = newRoutineKey;
 

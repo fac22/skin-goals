@@ -24,12 +24,18 @@ const MyRoutines = ({ user }) => {
   const [modal, setModal] = useState({ isOpen: false });
 
   const uid = user.uid;
+  console.log('routines', routines);
+  console.log('products', products);
 
   useEffect(() => {
     const routinesRef = ref(db, 'users/' + uid + '/routines');
     onValue(routinesRef, (snapshot) => {
       const data = snapshot.val();
-      setRoutines(data);
+      if (data) {
+        setRoutines(Object.values(data));
+      } else {
+        setRoutines([]);
+      }
     });
     const productsRef = ref(db, 'users/' + uid + '/products');
     onValue(productsRef, (snapshot) => {
