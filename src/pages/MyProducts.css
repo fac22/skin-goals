@@ -31,6 +31,16 @@
   transition: transform 0.3s;
 }
 
+.modal {
+  padding: 1rem;
+}
+
+.label-text {
+  background: -webkit-linear-gradient(var(--light-veraman), var(--soft-yellow));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .add-btn {
   width: 40%;
   margin-left: auto;

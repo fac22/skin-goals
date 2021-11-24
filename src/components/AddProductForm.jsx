@@ -54,7 +54,7 @@ const AddProductForm = ({
         </IonItem>
 
         <IonItem>
-          <IonLabel position="floating">Product Description</IonLabel>
+          <IonLabel position="floating">Description</IonLabel>
           <IonTextarea
             value={description}
             placeholder="Product description"
