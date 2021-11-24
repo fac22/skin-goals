@@ -53,7 +53,7 @@ const MyRoutines = ({ user }) => {
       </IonHeader>
 
       <IonContent fullscreen>
-        {routines.length ? (
+        {routines?.length ? (
           <IonSlides pager={true} options={slideOpts}>
             {routines.map((routine) => (
               <IonSlide>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
-import { IonButton } from '@ionic/react';
+import { IonButton, IonInput } from '@ionic/react';
 
 // import ProductCarousel from '../components/ProductCarousel';
 import RoutineList from './RoutineList';
@@ -31,10 +31,12 @@ let exampleData = {
 };
 
 const RoutineBuilder = ({ products, routines, setModal }) => {
+  const [newRoutineName, setNewRoutineName] = useState('');
+  console.log('products', products);
   const [data, setData] = useState(exampleData);
-
+  console.log('data', data);
   useEffect(() => {
-    const productsObj = {};
+    const productsObj = { ...products };
     const columnsObj = {
       products: {
         id: 'products',
@@ -45,10 +47,7 @@ const RoutineBuilder = ({ products, routines, setModal }) => {
         productIds: [],
       },
     };
-    products.forEach((product, i) => {
-      productsObj[i] = { id: i.toString(), name: product.name };
-      columnsObj.products.productIds.push(i.toString());
-    });
+    Object.keys(products).forEach((id) => columnsObj.products.productIds.push(id));
     const initialData = { products: { ...productsObj }, columns: { ...columnsObj } };
     setData(initialData);
   }, []);
@@ -118,6 +117,10 @@ const RoutineBuilder = ({ products, routines, setModal }) => {
     setData(newExampleData);
   }
 
+  function writeRoutine(newRoutine) {
+    console.log('newRoutine', newRoutine);
+  }
+
   return (
     <>
       <DragDropContext onDragEnd={onDragEnd}>
@@ -130,29 +133,16 @@ const RoutineBuilder = ({ products, routines, setModal }) => {
           /> */}
         <RoutineList key={productColumn.id} column={productColumn} products={productColumnProducts} />
         <h2>Routine</h2>
+        <IonInput placeholder="Product name"></IonInput>
         <RoutineList key={routineColumn.id} column={routineColumn} products={routineColumnProducts} />
       </DragDropContext>
       <IonButton
-        onClick={() => {
+        onClick={async () => {
           const newRoutine = data.columns.routine.productIds.map((id) => data.products[id].name);
+          console.log('newRoutine', newRoutine);
           if (newRoutine.length) {
-            // const dataToWrite = [];
-            // products.forEach((el, i) => {
-            //   if (newRoutine.includes(el.name)) {
-            //     dataToWrite.push(i);
-            //   }
-            // });
-            const dataToWrite = products.reduce((arr, el, i) => {
-              if (newRoutine.includes(el.name)) {
-                arr.push(i);
-              }
-              return arr;
-            }, []);
-            console.log(dataToWrite);
-
-            // newRoutine.forEach((product) => {
-            //   dataToWrite.push(products.filter((p) => p.name === product).map((e) => parseInt(e.id))[0]);
-            // });
+            await writeRoutine(newRoutine);
+            setModal({ isOpen: false });
           } else {
             setModal({ isOpen: false });
           }
