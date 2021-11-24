@@ -1,3 +1,16 @@
 ion-slides {
-  height: 25%;
+  height: 80%;
+}
+
+ion-slide {
+  display: flex;
+  flex-direction: column;
+}
+
+ion-list {
+  width: 90%;
+}
+
+.swiper-slide {
+  justify-content: flex-start;
 }

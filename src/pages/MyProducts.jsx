@@ -17,7 +17,8 @@ const MyProducts = ({ user }) => {
   const [volume, setVolume] = useState('');
   const [price, setPrice] = useState('');
 
-  const [productsData, setProductsData] = useState([]);
+  // const [productsData, setProductsData] = useState({});
+  const [productsArray, setProductsArray] = useState([]);
 
   const [creamModal, setCreamModal] = useState({ isOpen: false });
   const [formModal, setFormModal] = useState({ isOpen: false });
@@ -31,8 +32,11 @@ const MyProducts = ({ user }) => {
   useEffect(() => {
     const productsRef = ref(db, 'users/' + uid + '/products/');
     onValue(productsRef, (snapshot) => {
-      setProductsData(snapshot.val());
+      const data = snapshot.val();
+      setProductsArray(Object.values(data));
     });
+
+    console.log('productsArray', productsArray);
   }, []);
 
   return (
@@ -48,7 +52,7 @@ const MyProducts = ({ user }) => {
         <section>
           {/* -----------------------------------------------------   RENDERS all product info on page */}
           <div className="grid">
-            {productsData.map((cream, index) => {
+            {productsArray.map((cream, index) => {
               return (
                 <section className="cream-wrapper">
                   <div
@@ -73,35 +77,35 @@ const MyProducts = ({ user }) => {
               <h3>
                 <span className="label-text">Description</span> 📝
               </h3>
-              <p>{creamModal.isOpen ? productsData[creamId].description : '-'}</p>
+              <p>{creamModal.isOpen ? productsArray[creamId].description : '-'}</p>
             </div>
 
             <div className="modal">
               <h3>
                 <span className="label-text">Open date</span> 📆
               </h3>
-              <p>{creamModal.isOpen ? productsData[creamId].opened : '-'}</p>
+              <p>{creamModal.isOpen ? productsArray[creamId].opened : '-'}</p>
             </div>
 
             <div className="modal">
               <h3>
                 <span className="label-text">PAO</span> 🌽
               </h3>
-              <p>{creamModal.isOpen ? productsData[creamId].pao : '-'}</p>
+              <p>{creamModal.isOpen ? productsArray[creamId].pao : '-'}</p>
             </div>
 
             <div className="modal">
               <h3>
                 <span className="label-text">Price</span> 💷
               </h3>
-              <p>{creamModal.isOpen ? productsData[creamId].price : '-'}</p>
+              <p>{creamModal.isOpen ? productsArray[creamId].price : '-'}</p>
             </div>
 
             <div className="modal">
               <h3>
                 <span className="label-text">Volume</span> 🧴
               </h3>
-              <p>{creamModal.isOpen ? productsData[creamId].volume : '-'}</p>
+              <p>{creamModal.isOpen ? productsArray[creamId].volume : '-'}</p>
             </div>
 
             <IonButton onClick={() => setCreamModal({ isOpen: false })}>Close Modal</IonButton>

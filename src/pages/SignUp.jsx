@@ -19,6 +19,7 @@ import { ref, set } from 'firebase/database';
 const SignUp = () => {
   const [registerEmail, setRegisterEmail] = useState('');
   const [registerPassword, setRegisterPassword] = useState('');
+  const [name, setName] = useState('');
 
   const signup = async () => {
     try {
@@ -26,8 +27,8 @@ const SignUp = () => {
       console.log(user);
       const uid = user.user.uid;
       const userDataToWrite = {
-        products: ['No Products'],
-        routines: { 'No Routines': 'No Routines' },
+        name,
+        uid,
       };
       console.log(userDataToWrite);
       await set(ref(db, 'users/' + uid), userDataToWrite);
@@ -48,6 +49,17 @@ const SignUp = () => {
       </IonHeader>
       <IonContent className="ion-padding">
         <IonItem>
+          <IonLabel position="floating">Name</IonLabel>
+          <IonInput
+            value={name}
+            onIonChange={(e) => {
+              setName(e.detail.value);
+            }}
+            placeholder="Name"
+          />
+        </IonItem>
+
+        <IonItem>
           <IonLabel position="floating">Email Address</IonLabel>
           <IonInput
             value={registerEmail}
@@ -64,17 +76,6 @@ const SignUp = () => {
             onIonChange={(e) => setRegisterPassword(e.detail.value)}
           />
         </IonItem>
-
-        {/* <IonItem>
-          <IonLabel position="floating">Username</IonLabel>
-          <IonInput
-            value={username}
-            onIonChange={(e) => {
-              setUsername(e.detail.value);
-            }}
-            placeholder="Username"
-          />
-        </IonItem> */}
 
         {/* <IonItem>
           <IonLabel position="floating">Confirm password</IonLabel>

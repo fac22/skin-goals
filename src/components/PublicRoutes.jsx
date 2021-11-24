@@ -7,6 +7,7 @@ import { home, ellipse, fileTrayFullOutline } from 'ionicons/icons';
 import Home from '../pages/Home';
 import MyRoutines from '../pages/MyRoutines';
 import MyProducts from '../pages/MyProducts';
+import Profile from '../pages/Profile';
 
 const PublicRoutes = ({ user }) => {
   return (
@@ -17,10 +18,13 @@ const PublicRoutes = ({ user }) => {
             <Home user={user} />
           </Route>
           <Route exact path="/myRoutines">
-            <MyRoutines />
+            <MyRoutines user={user} />
           </Route>
           <Route path="/myProducts">
             <MyProducts user={user} />
+          </Route>
+          <Route path="/profile">
+            <Profile user={user} />
           </Route>
 
           <Route exact path="/">
