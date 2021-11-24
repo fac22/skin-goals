@@ -136,15 +136,23 @@ const RoutineBuilder = ({ products, routines, setModal }) => {
         onClick={() => {
           const newRoutine = data.columns.routine.productIds.map((id) => data.products[id].name);
           if (newRoutine.length) {
-            const dataToWrite = [];
-            newRoutine.forEach((product) => {
-              dataToWrite.push(
-                Object.values(products)
-                  .filter((p) => p.name === product)
-                  .map((e) => parseInt(e.id))[0]
-              );
-            });
+            // const dataToWrite = [];
+            // products.forEach((el, i) => {
+            //   if (newRoutine.includes(el.name)) {
+            //     dataToWrite.push(i);
+            //   }
+            // });
+            const dataToWrite = products.reduce((arr, el, i) => {
+              if (newRoutine.includes(el.name)) {
+                arr.push(i);
+              }
+              return arr;
+            }, []);
             console.log(dataToWrite);
+
+            // newRoutine.forEach((product) => {
+            //   dataToWrite.push(products.filter((p) => p.name === product).map((e) => parseInt(e.id))[0]);
+            // });
           } else {
             setModal({ isOpen: false });
           }

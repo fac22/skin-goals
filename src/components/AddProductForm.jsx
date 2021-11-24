@@ -2,31 +2,48 @@ import { IonList, IonItem, IonLabel, IonInput, IonTextarea, IonButton } from '@i
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { db } from '../firebase';
-import { ref, set, onValue } from 'firebase/database';
+import { ref, set, onValue, push, child, update } from 'firebase/database';
 
 import creamsArr from '../creams-data.js';
 
 let productsIdx = 0;
 
+const AddProductForm = ({
+  name,
+  description,
+  setName,
+  setDescription,
+  opened,
+  setOpened,
+  pao,
+  setPao,
+  volume,
+  setVolume,
+  price,
+  setPrice,
+  formModal,
+  setFormModal,
+  uid,
+}) => {
+  const readFromDatabase = () => {
+    const productsRef = ref(db, 'users/' + uid + '/products/');
+    let productsData;
+    onValue(productsRef, (snapshot) => {
+      productsData = snapshot.val();
+    });
+    return productsData;
+  };
 
-const AddProductForm = ({ name, description, setName, setDescription, opened, setOpened, pao, setPao, volume, setVolume, price, setPrice, formModal, setFormModal, uid }) => {
+  const writeToDatabase = (name, description, opened, pao, volume, price) => {
+    const productData = { name, description, opened, pao, volume, price };
+    const newProductKey = push(child(ref(db), 'products')).key;
+    productData.id = newProductKey;
 
-const readFromDatabase = () => {
-const productsRef = ref(db, 'users/' + uid + '/products/');
-let productsData;
-onValue(productsRef, snapshot => {
-  productsData = snapshot.val();
-});
-return productsData;
-}
+    const updates = {};
+    updates[`/users/${uid}/products/${newProductKey}`] = productData;
 
-
- const writeToDatabase = (name, description, opened, pao, volume, price) => {
-
-set(ref(db, 'users/' + uid + `/products/${productsIdx}`), {
-  name, description, opened, pao, volume, price
-})
- }
+    return update(ref(db), updates);
+  };
 
   return (
     <div>
@@ -59,7 +76,7 @@ set(ref(db, 'users/' + uid + `/products/${productsIdx}`), {
           <IonLabel position="floating">Volume</IonLabel>
           <IonInput value={volume} placeholder="Open date" onIonChange={(e) => setVolume(e.detail.value)} />
         </IonItem>
-        
+
         <IonItem>
           <IonLabel position="floating">Price</IonLabel>
           <IonInput value={price} placeholder="Open date" onIonChange={(e) => setPrice(e.detail.value)} />
@@ -72,9 +89,9 @@ set(ref(db, 'users/' + uid + `/products/${productsIdx}`), {
         className="add-btn"
         onClick={async (e) => {
           e.preventDefault();
-          productsIdx = await readFromDatabase().length;
+          // productsIdx = await readFromDatabase().length;
           await writeToDatabase(name, description, opened, pao, volume, price);
-          setFormModal({ isOpen: false});
+          setFormModal({ isOpen: false });
         }}
       >
         Submit product information

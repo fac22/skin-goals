@@ -17,6 +17,8 @@ import {
   IonLabel,
   IonList,
   IonTitle,
+  IonChip,
+  IonAvatar,
 } from '@ionic/react';
 import './Home.css';
 import { person } from 'ionicons/icons';
@@ -34,8 +36,14 @@ const Home = ({ user }) => {
       <IonContent fullscreen className="ion-padding">
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonButton size="large" fill="clear" slot="end" shape="round">
-              <IonIcon icon={person} />
+            <IonButton href="/profile" size="large" fill="clear" slot="end" shape="round">
+              {/* <IonIcon icon={person} /> */}
+              <IonChip>
+                <IonAvatar>
+                  <IonIcon icon={person} />
+                </IonAvatar>
+                <IonLabel>{user.email}</IonLabel>
+              </IonChip>
             </IonButton>
             <IonButton onClick={logout}>logout</IonButton>
           </IonToolbar>
