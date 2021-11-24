@@ -33,7 +33,11 @@ const MyProducts = ({ user }) => {
     const productsRef = ref(db, 'users/' + uid + '/products/');
     onValue(productsRef, (snapshot) => {
       const data = snapshot.val();
-      setProductsArray(Object.values(data));
+      if (data) {
+        setProductsArray(Object.values(data));
+      } else {
+        setProductsArray([]);
+      }
     });
 
     console.log('productsArray', productsArray);
