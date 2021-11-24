@@ -8,7 +8,7 @@ const RoutineList = ({ products, column }) => {
   return (
     <Droppable droppableId={column.id}>
       {(provided) => (
-        <IonList ref={provided.innerRef} {...provided.droppableProps}>
+        <IonList className='routine-list' ref={provided.innerRef} {...provided.droppableProps}>
           {products.map((product, index) => (
             <ProductListItem key={product.id} column={column} product={product} index={index}>
               <h1>{product.name}</h1>
