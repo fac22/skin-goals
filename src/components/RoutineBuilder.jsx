@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
 import { IonButton, IonInput } from '@ionic/react';
+import { push, child, ref, update } from '@firebase/database';
+import { db } from '../firebase';
 
 // import ProductCarousel from '../components/ProductCarousel';
 import RoutineList from './RoutineList';
@@ -30,11 +32,9 @@ let exampleData = {
   },
 };
 
-const RoutineBuilder = ({ products, routines, setModal }) => {
+const RoutineBuilder = ({ products, setModal, uid }) => {
   const [newRoutineName, setNewRoutineName] = useState('');
-  console.log('products', products);
   const [data, setData] = useState(exampleData);
-  console.log('data', data);
   useEffect(() => {
     const productsObj = { ...products };
     const columnsObj = {
@@ -118,7 +118,14 @@ const RoutineBuilder = ({ products, routines, setModal }) => {
   }
 
   function writeRoutine(newRoutine) {
-    console.log('newRoutine', newRoutine);
+    const routineData = { newRoutine, name: newRoutineName };
+    const newRoutineKey = push(child(ref(db), 'routines')).key;
+    routineData.id = newRoutineKey;
+
+    const updates = {};
+    updates[`/users/${uid}/routines/${newRoutineKey}`] = routineData;
+
+    return update(ref(db), updates);
   }
 
   return (
@@ -133,13 +140,12 @@ const RoutineBuilder = ({ products, routines, setModal }) => {
           /> */}
         <RoutineList key={productColumn.id} column={productColumn} products={productColumnProducts} />
         <h2>Routine</h2>
-        <IonInput placeholder="Product name"></IonInput>
+        <IonInput placeholder="Enter routine name" onIonChange={(e) => setNewRoutineName(e.detail.value)}></IonInput>
         <RoutineList key={routineColumn.id} column={routineColumn} products={routineColumnProducts} />
       </DragDropContext>
       <IonButton
         onClick={async () => {
-          const newRoutine = data.columns.routine.productIds.map((id) => data.products[id].name);
-          console.log('newRoutine', newRoutine);
+          const newRoutine = data.columns.routine.productIds;
           if (newRoutine.length) {
             await writeRoutine(newRoutine);
             setModal({ isOpen: false });

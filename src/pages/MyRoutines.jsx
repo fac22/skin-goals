@@ -30,7 +30,6 @@ const MyRoutines = ({ user }) => {
     onValue(routinesRef, (snapshot) => {
       const data = snapshot.val();
       setRoutines(data);
-      console.log(data);
     });
     const productsRef = ref(db, 'users/' + uid + '/products');
     onValue(productsRef, (snapshot) => {
@@ -81,7 +80,7 @@ const MyRoutines = ({ user }) => {
           Create new routine
         </IonButton>
         <IonModal isOpen={modal.isOpen}>
-          <RoutineBuilder products={products} routines={routines} setModal={setModal} />
+          <RoutineBuilder uid={uid} products={products} routines={routines} setModal={setModal} />
           <IonButton
             onClick={() => {
               setModal({ isOpen: false });
