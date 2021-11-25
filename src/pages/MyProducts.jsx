@@ -149,7 +149,6 @@ const MyProducts = ({ user }) => {
             </section>
 
             <section className="modal-buttons">
-              <IonButton onClick={() => setCreamModal({ isOpen: false })}>Close Modal</IonButton>
               <IonButton
                 onClick={async () => {
                   await setCreamModal({ isOpen: false });
