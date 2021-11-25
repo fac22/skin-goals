@@ -24,7 +24,6 @@ const checkboxList = [
 ];
 
 const SkincareRules = () => {
-  const [checked, setChecked] = useState(false);
   return (
     <IonPage>
       <IonHeader>
@@ -52,17 +51,13 @@ const SkincareRules = () => {
           ))}
         </IonList>
         <IonButton
-          color="add-btn"
-          expand="block"
-          className="add-btn"
+          color="warning"
+          expand="full"
           onClick={async (e) => {
             e.preventDefault();
-            // productsIdx = await readFromDatabase().length;
-            // await writeToDatabase(name, description, opened, pao, volume, price);
-            // setFormModal({ isOpen: false });
           }}
         >
-          Submit
+          This page is under construction :)
         </IonButton>
       </IonContent>
     </IonPage>
