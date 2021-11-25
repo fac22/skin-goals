@@ -66,7 +66,7 @@ const MyRoutines = ({ user }) => {
 
       <IonContent fullscreen>
         {routines?.length ? (
-          <IonSlides pager={true} options={slideOpts}>
+          <IonSlides pager={true} options={slideOpts} key={routines.map((routine) => routine.id).join('_')}>
             {routines.map((routine) => (
               <IonSlide key={routine.id}>
                 <div style={{ display: 'flex' }}>
