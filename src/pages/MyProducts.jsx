@@ -13,6 +13,7 @@ import {
   IonButtons,
   IonIcon,
   IonModal,
+  IonText,
 } from '@ionic/react';
 import { addOutline } from 'ionicons/icons';
 import AddProductForm from '../components/AddProductForm';
@@ -100,48 +101,50 @@ const MyProducts = ({ user }) => {
           <IonModal className="product-modal" key={creamId} isOpen={creamModal.isOpen}>
             <section className="modal-open">
               <IonHeader>
-              <IonToolbar>
-                <IonTitle>product name</IonTitle>
-                <IonButtons slot="end">
-                  <IonButton color="danger" onClick={() => setCreamModal({ isOpen: false })}>
-                    Close
-                  </IonButton>
-                </IonButtons>
-              </IonToolbar>
-            </IonHeader>
-              <div className="modal">
-                <h3>
-                  <span className="label-text">Description</span> 📝
-                </h3>
-                <p>{creamModal?.isOpen ? productsArray[creamId].description : '-'}</p>
-              </div>
+                <IonToolbar>
+                  <IonTitle>product name</IonTitle>
+                  <IonButtons slot="end">
+                    <IonButton color="danger" onClick={() => setCreamModal({ isOpen: false })}>
+                      Close
+                    </IonButton>
+                  </IonButtons>
+                </IonToolbar>
+              </IonHeader>
+              <div className="product-details-container">
+                <div className="modal">
+                  <h3>
+                    <span className="label-text">Description</span> 📝
+                  </h3>
+                  <p>{creamModal?.isOpen ? productsArray[creamId].description : '-'}</p>
+                </div>
 
-              <div className="modal">
-                <h3>
-                  <span className="label-text">Open date</span> 📆
-                </h3>
-                <p>{creamModal?.isOpen ? productsArray[creamId].opened : '-'}</p>
-              </div>
+                <div className="modal">
+                  <h3>
+                    <span className="label-text">Open date</span> 📆
+                  </h3>
+                  <p>{creamModal?.isOpen ? productsArray[creamId].opened : '-'}</p>
+                </div>
 
-              <div className="modal">
-                <h3>
-                  <span className="label-text">PAO</span> 🌽
-                </h3>
-                <p>{creamModal?.isOpen ? productsArray[creamId].pao : '-'}</p>
-              </div>
+                <div className="modal">
+                  <h3>
+                    <span className="label-text">PAO</span> 🌽
+                  </h3>
+                  <p>{creamModal?.isOpen ? productsArray[creamId].pao : '-'}</p>
+                </div>
 
-              <div className="modal">
-                <h3>
-                  <span className="label-text">Price</span> 💷
-                </h3>
-                <p>{creamModal?.isOpen ? productsArray[creamId].price : '-'}</p>
-              </div>
+                <div className="modal">
+                  <h3>
+                    <span className="label-text">Price</span> 💷
+                  </h3>
+                  <p>{creamModal?.isOpen ? productsArray[creamId].price : '-'}</p>
+                </div>
 
-              <div className="modal">
-                <h3>
-                  <span className="label-text">Volume</span> 🧴
-                </h3>
-                <p>{creamModal?.isOpen ? productsArray[creamId].volume : '-'}</p>
+                <div className="modal">
+                  <h3>
+                    <span className="label-text">Volume</span> 🧴
+                  </h3>
+                  <p>{creamModal?.isOpen ? productsArray[creamId].volume : '-'}</p>
+                </div>
               </div>
             </section>
 
@@ -160,12 +163,18 @@ const MyProducts = ({ user }) => {
         </section>
 
         {/* -----------------------------------------------------   button opens form modal */}
-        <IonButton data-testid='addButton' color="add-btn" expand="block" className="add-btn" onClick={() => setFormModal({ isOpen: true })}>
+        <IonButton
+          data-testid="addButton"
+          color="add-btn"
+          expand="block"
+          className="add-btn"
+          onClick={() => setFormModal({ isOpen: true })}
+        >
           Add product <IonIcon icon={addOutline} />
         </IonButton>
 
         {/* -----------------------------------------------------   FORM MODAL to add a new product*/}
-        <IonModal data-testid='formModal' isOpen={formModal.isOpen}>
+        <IonModal data-testid="formModal" isOpen={formModal.isOpen}>
           <IonHeader>
             <IonToolbar>
               <IonTitle>Add new product</IonTitle>
