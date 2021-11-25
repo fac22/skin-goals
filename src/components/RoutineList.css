@@ -1,4 +1,5 @@
 .routine-list {
   overflow: auto;
   height: 40%;
+  border: 0.1rem solid var(--ion-color-primary);
 }
