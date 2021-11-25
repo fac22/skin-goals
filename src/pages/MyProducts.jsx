@@ -163,6 +163,7 @@ const MyProducts = ({ user }) => {
             formModal={formModal}
             setFormModal={setFormModal}
             uid={uid}
+            productsArray={productsArray}
           />
           <IonButton color="danger" onClick={() => setFormModal({ isOpen: false })}>
             Close Modal

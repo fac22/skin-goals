@@ -1,12 +1,8 @@
-import { IonList, IonItem, IonLabel, IonInput, IonTextarea, IonButton, IonAlert } from '@ionic/react';
+import { IonList, IonItem, IonLabel, IonInput, IonTextarea, IonButton, IonAlert, useIonAlert } from '@ionic/react';
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { db } from '../firebase';
 import { ref, set, onValue, push, child, update } from 'firebase/database';
-
-import creamsArr from '../creams-data.js';
-
-let productsIdx = 0;
 
 const AddProductForm = ({
   name,
@@ -24,7 +20,10 @@ const AddProductForm = ({
   formModal,
   setFormModal,
   uid,
+  productsArray,
 }) => {
+  const [present] = useIonAlert();
+
   const readFromDatabase = () => {
     const productsRef = ref(db, 'users/' + uid + '/products/');
     let productsData;
@@ -36,16 +35,25 @@ const AddProductForm = ({
 
   const writeToDatabase = (name, description, opened, pao, volume, price) => {
     if (name === '') {
-      return <IonAlert>Please enter a name!</IonAlert>;
+      present({
+        cssClass: 'my-css',
+        header: 'Alert',
+        message: 'Please add a product name!',
+        buttons: ['Cancel', { text: 'Ok', handler: (d) => console.log('ok pressed') }],
+        onDidDismiss: (e) => console.log('did dismiss'),
+      });
+    } else if (productsArray.includes(name)) {
+      return <IonAlert>Product already exists!</IonAlert>;
+    } else {
+      const productData = { name, description, opened, pao, volume, price };
+      const newProductKey = push(child(ref(db), 'products')).key;
+      productData.id = newProductKey;
+
+      const updates = {};
+      updates[`/users/${uid}/products/${newProductKey}`] = productData;
+
+      return update(ref(db), updates);
     }
-    const productData = { name, description, opened, pao, volume, price };
-    const newProductKey = push(child(ref(db), 'products')).key;
-    productData.id = newProductKey;
-
-    const updates = {};
-    updates[`/users/${uid}/products/${newProductKey}`] = productData;
-
-    return update(ref(db), updates);
   };
 
   // const checkLength = (str) => {
