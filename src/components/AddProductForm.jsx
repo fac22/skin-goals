@@ -1,4 +1,4 @@
-import { IonList, IonItem, IonLabel, IonInput, IonTextarea, IonButton } from '@ionic/react';
+import { IonList, IonItem, IonLabel, IonInput, IonTextarea, IonButton, IonAlert } from '@ionic/react';
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { db } from '../firebase';
@@ -35,6 +35,9 @@ const AddProductForm = ({
   };
 
   const writeToDatabase = (name, description, opened, pao, volume, price) => {
+    if (name === '') {
+      return <IonAlert>Please enter a name!</IonAlert>;
+    }
     const productData = { name, description, opened, pao, volume, price };
     const newProductKey = push(child(ref(db), 'products')).key;
     productData.id = newProductKey;
@@ -44,6 +47,12 @@ const AddProductForm = ({
 
     return update(ref(db), updates);
   };
+
+  // const checkLength = (str) => {
+  //   if (str === '') {
+  //     return <IonAlert>Please enter a name!</IonAlert>;
+  //   }
+  // };
 
   return (
     <div>
@@ -90,6 +99,7 @@ const AddProductForm = ({
         onClick={async (e) => {
           e.preventDefault();
           // productsIdx = await readFromDatabase().length;
+          // await checkLength(name);
           await writeToDatabase(name, description, opened, pao, volume, price);
           setFormModal({ isOpen: false });
         }}
