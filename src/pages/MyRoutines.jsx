@@ -12,20 +12,22 @@ import {
   IonSlide,
   IonList,
   IonModal,
+  IonIcon,
 } from '@ionic/react';
-import { ref, onValue } from '@firebase/database';
+import { ref, onValue, remove } from '@firebase/database';
 import { db } from '../firebase';
 import './MyRoutines.css';
 import RoutineBuilder from '../components/RoutineBuilder';
+import { trash } from 'ionicons/icons';
 
 const MyRoutines = ({ user }) => {
   const [routines, setRoutines] = useState([]);
   const [products, setProducts] = useState([]);
   const [modal, setModal] = useState({ isOpen: false });
+  const [deleteModal, setDeleteModal] = useState({ isOpen: false });
+  const [routineToDelete, setRoutineToDelete] = useState('');
 
   const uid = user.uid;
-  console.log('routines', routines);
-  console.log('products', products);
 
   useEffect(() => {
     const routinesRef = ref(db, 'users/' + uid + '/routines');
@@ -44,8 +46,13 @@ const MyRoutines = ({ user }) => {
     });
   }, []);
 
+  function deleteRoutine(routineId) {
+    const routineRef = ref(db, `users/${uid}/routines/${routineId}`);
+    remove(routineRef);
+  }
+
   const slideOpts = {
-    initialSlide: 1,
+    initialSlide: 0,
     speed: 400,
   };
 
@@ -59,13 +66,23 @@ const MyRoutines = ({ user }) => {
 
       <IonContent fullscreen>
         {routines?.length ? (
-          <IonSlides pager={true} options={slideOpts}>
+          <IonSlides pager={true} options={slideOpts} key={routines.map((routine) => routine.id).join('_')}>
             {routines.map((routine) => (
-              <IonSlide>
-                <h2>{routine.name}</h2>
+              <IonSlide key={routine.id}>
+                <div style={{ display: 'flex' }}>
+                  <h2 style={{ marginRight: '3rem' }}>{routine.name}</h2>{' '}
+                  <IonButton
+                    onClick={() => {
+                      setRoutineToDelete(`${routine.id}`);
+                      setDeleteModal({ isOpen: true });
+                    }}
+                  >
+                    <IonIcon icon={trash} />
+                  </IonButton>
+                </div>
                 <IonList>
                   {routine.productIds.map((product) => (
-                    <IonItem>
+                    <IonItem key={product.id}>
                       <IonLabel>{products[product]?.name}</IonLabel>
                     </IonItem>
                   ))}
@@ -93,6 +110,26 @@ const MyRoutines = ({ user }) => {
             }}
           >
             Close
+          </IonButton>
+        </IonModal>
+
+        <IonModal isOpen={deleteModal.isOpen}>
+          <p>Are you sure you want to delete this?</p>
+          <IonButton
+            onClick={() => {
+              console.log(routineToDelete);
+              deleteRoutine(routineToDelete);
+              setDeleteModal({ isOpen: false });
+            }}
+          >
+            Yes
+          </IonButton>
+          <IonButton
+            onClick={() => {
+              setDeleteModal({ isOpen: false });
+            }}
+          >
+            No
           </IonButton>
         </IonModal>
       </IonContent>
