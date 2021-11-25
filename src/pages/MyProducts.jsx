@@ -160,12 +160,12 @@ const MyProducts = ({ user }) => {
         </section>
 
         {/* -----------------------------------------------------   button opens form modal */}
-        <IonButton color="add-btn" expand="block" className="add-btn" onClick={() => setFormModal({ isOpen: true })}>
+        <IonButton data-testid='addButton' color="add-btn" expand="block" className="add-btn" onClick={() => setFormModal({ isOpen: true })}>
           Add product <IonIcon icon={addOutline} />
         </IonButton>
 
         {/* -----------------------------------------------------   FORM MODAL to add a new product*/}
-        <IonModal isOpen={formModal.isOpen}>
+        <IonModal data-testid='formModal' isOpen={formModal.isOpen}>
           <IonHeader>
             <IonToolbar>
               <IonTitle>Add new product</IonTitle>
