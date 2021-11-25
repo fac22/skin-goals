@@ -12,12 +12,8 @@ import {
   IonRouterOutlet,
 } from '@ionic/react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { Route, Redirect } from 'react-router-dom';
 import { auth } from '../firebase';
 import React, { useState } from 'react';
-import Home from './Home';
-// import { useHistory } from 'react-router';
-import { IonReactRouter } from '@ionic/react-router';
 
 const LogIn = () => {
   const [loginEmail, setLoginEmail] = useState('');
@@ -31,19 +27,10 @@ const LogIn = () => {
   const login = async () => {
     try {
       const user = await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
-      console.log(user);
-      // goHome();
     } catch (error) {
       console.log(error.message);
     }
   };
-
-  // const [email, setEmail] = React.useState('');
-  // const [password, setPassword] = React.useState('');
-  // function loginUser() {
-  //   console.log(email, password);
-  // }
-
   return (
     <IonPage>
       <IonHeader>
@@ -65,6 +52,7 @@ const LogIn = () => {
           <IonItem>
             <IonLabel position="floating">Password</IonLabel>
             <IonInput
+              type="password"
               value={loginPassword}
               placeholder="Password"
               onIonChange={(e) => setLoginPassword(e.detail.value)}

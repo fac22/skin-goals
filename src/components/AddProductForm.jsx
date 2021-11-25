@@ -1,4 +1,4 @@
-import { IonList, IonItem, IonLabel, IonInput, IonTextarea, IonButton, IonAlert, useIonAlert } from '@ionic/react';
+import { IonList, IonItem, IonLabel, IonInput, IonTextarea, IonButton, IonContent, useIonAlert } from '@ionic/react';
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { db } from '../firebase';
@@ -71,7 +71,7 @@ const AddProductForm = ({
   // };
 
   return (
-    <div>
+    <IonContent fullscreen>
       <IonList>
         <IonItem>
           <IonLabel position="floating">Product Name</IonLabel>
@@ -94,17 +94,17 @@ const AddProductForm = ({
 
         <IonItem>
           <IonLabel position="floating">PAO</IonLabel>
-          <IonInput value={pao} placeholder="Open date" onIonChange={(e) => setPao(e.detail.value)} />
+          <IonInput value={pao} placeholder="Period after opening" onIonChange={(e) => setPao(e.detail.value)} />
         </IonItem>
 
         <IonItem>
           <IonLabel position="floating">Volume</IonLabel>
-          <IonInput value={volume} placeholder="Open date" onIonChange={(e) => setVolume(e.detail.value)} />
+          <IonInput value={volume} placeholder="Volume" onIonChange={(e) => setVolume(e.detail.value)} />
         </IonItem>
 
         <IonItem>
           <IonLabel position="floating">Price</IonLabel>
-          <IonInput value={price} placeholder="Open date" onIonChange={(e) => setPrice(e.detail.value)} />
+          <IonInput value={price} placeholder="Price" onIonChange={(e) => setPrice(e.detail.value)} />
         </IonItem>
       </IonList>
 
@@ -120,9 +120,9 @@ const AddProductForm = ({
           setFormModal({ isOpen: false });
         }}
       >
-        Submit product information
+        Submit
       </IonButton>
-    </div>
+    </IonContent>
   );
 };
 

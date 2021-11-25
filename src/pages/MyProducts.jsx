@@ -3,7 +3,17 @@ import { useState, useEffect } from 'react';
 import { ref, onValue, remove, set, update } from 'firebase/database';
 import { db } from '../firebase';
 
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton, IonIcon, IonModal } from '@ionic/react';
+import {
+  IonContent,
+  IonHeader,
+  IonPage,
+  IonTitle,
+  IonToolbar,
+  IonButton,
+  IonButtons,
+  IonIcon,
+  IonModal,
+} from '@ionic/react';
 import { addOutline } from 'ionicons/icons';
 import AddProductForm from '../components/AddProductForm';
 
@@ -88,8 +98,17 @@ const MyProducts = ({ user }) => {
 
           {/* -----------------------------------------------------   MODAL for each cream */}
           <IonModal className="product-modal" key={creamId} isOpen={creamModal.isOpen}>
-            {/* <h1>This is a modal with ID: {creamId}</h1> */}
             <section className="modal-open">
+              <IonHeader>
+              <IonToolbar>
+                <IonTitle>product name</IonTitle>
+                <IonButtons slot="end">
+                  <IonButton color="danger" onClick={() => setCreamModal({ isOpen: false })}>
+                    Close
+                  </IonButton>
+                </IonButtons>
+              </IonToolbar>
+            </IonHeader>
               <div className="modal">
                 <h3>
                   <span className="label-text">Description</span> 📝
@@ -147,6 +166,16 @@ const MyProducts = ({ user }) => {
 
         {/* -----------------------------------------------------   FORM MODAL to add a new product*/}
         <IonModal isOpen={formModal.isOpen}>
+          <IonHeader>
+            <IonToolbar>
+              <IonTitle>Add new product</IonTitle>
+              <IonButtons slot="end">
+                <IonButton color="danger" onClick={() => setFormModal({ isOpen: false })}>
+                  Close
+                </IonButton>
+              </IonButtons>
+            </IonToolbar>
+          </IonHeader>
           <AddProductForm
             name={name}
             description={description}
@@ -165,9 +194,6 @@ const MyProducts = ({ user }) => {
             uid={uid}
             productsArray={productsArray}
           />
-          <IonButton color="danger" onClick={() => setFormModal({ isOpen: false })}>
-            Close Modal
-          </IonButton>
         </IonModal>
       </IonContent>
     </IonPage>
