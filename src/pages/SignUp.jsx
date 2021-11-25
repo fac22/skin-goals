@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
   IonButtons,
   IonBackButton,
@@ -24,13 +24,12 @@ const SignUp = () => {
   const signup = async () => {
     try {
       const user = await createUserWithEmailAndPassword(auth, registerEmail, registerPassword);
-      console.log(user);
+
       const uid = user.user.uid;
       const userDataToWrite = {
         name,
         uid,
       };
-      console.log(userDataToWrite);
       await set(ref(db, 'users/' + uid), userDataToWrite);
     } catch (error) {
       console.log(error.message);
@@ -71,20 +70,12 @@ const SignUp = () => {
         <IonItem>
           <IonLabel position="floating">Password</IonLabel>
           <IonInput
+            type="password"
             value={registerPassword}
             placeholder="Password"
             onIonChange={(e) => setRegisterPassword(e.detail.value)}
           />
         </IonItem>
-
-        {/* <IonItem>
-          <IonLabel position="floating">Confirm password</IonLabel>
-          <IonInput
-            value={cpassword}
-            placeholder="Confirm password"
-            onIonChange={(e) => setCPassword(e.detail.value)}
-          />
-        </IonItem> */}
 
         <div style={{ padding: 8 }}>
           <IonButton expand="full" style={{ margin: 14 }} onClick={signup}>
