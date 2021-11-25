@@ -1,31 +1,37 @@
-import React, { useState } from 'react';
-import { createUserWithEmailAndPassword, onAuthStateChanged, signOut, signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../firebase';
-import {
-  IonContent,
-  IonHeader,
-  IonPage,
-  IonToolbar,
-  IonButton,
-  IonIcon,
-  IonCard,
-  IonCardContent,
-  IonCardHeader,
-  IonCardSubtitle,
-  IonCardTitle,
-  IonItem,
-  IonLabel,
-  IonList,
-  IonTitle,
-  IonChip,
-  IonAvatar,
-} from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonToolbar, IonTitle } from '@ionic/react';
 import './Home.css';
-import { person } from 'ionicons/icons';
+import { useState, useEffect } from 'react';
+
+import { ref, onValue } from '@firebase/database';
+import { db } from '../firebase';
+
+import ProfilePopover from '../components/ProfilePopover';
+import HomeFirstCard from '../components/HomeFirstCard';
+import HomeRoutineCard from '../components/HomeRoutineCard';
+
 const Home = ({ user }) => {
-  const logout = async () => {
-    await signOut(auth);
-  };
+  const [routines, setRoutines] = useState([]);
+  const [products, setProducts] = useState([]);
+
+  const uid = user.uid;
+
+  useEffect(() => {
+    const routinesRef = ref(db, 'users/' + uid + '/routines');
+    onValue(routinesRef, (snapshot) => {
+      const data = snapshot.val();
+      if (data) {
+        setRoutines(Object.values(data));
+      } else {
+        setRoutines([]);
+      }
+    });
+    const productsRef = ref(db, 'users/' + uid + '/products');
+    onValue(productsRef, (snapshot) => {
+      const data = snapshot.val();
+      setProducts(data);
+    });
+  }, []);
+
   return (
     <IonPage>
       <IonHeader>
@@ -34,37 +40,12 @@ const Home = ({ user }) => {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen className="ion-padding">
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonButton href="/profile" size="large" fill="clear" slot="end" shape="round">
-              {/* <IonIcon icon={person} /> */}
-              <IonChip>
-                <IonAvatar>
-                  <IonIcon icon={person} />
-                </IonAvatar>
-                <IonLabel>{user.email}</IonLabel>
-              </IonChip>
-            </IonButton>
-            <IonButton onClick={logout}>logout</IonButton>
-          </IonToolbar>
-        </IonHeader>
-        <IonCard>
-          <IonCardHeader>
-            <IonCardSubtitle>Hello {user.email}</IonCardSubtitle>
-            <IonCardTitle>
-              Great skin is not simply a matter of DNA — your daily habits, in fact, have a big impact on what you see
-              in the mirror.
-            </IonCardTitle>
-          </IonCardHeader>
-
-          <IonCardContent>
-            <IonList>
-              <IonItem>
-                <IonLabel>Start today, create your first routine</IonLabel>
-              </IonItem>
-            </IonList>
-          </IonCardContent>
-        </IonCard>
+        <ProfilePopover />
+        {routines?.length ? (
+          <HomeRoutineCard user={user} routines={routines} products={products} />
+        ) : (
+          <HomeFirstCard user={user} />
+        )}
       </IonContent>
     </IonPage>
   );
