@@ -24,6 +24,8 @@ const AddProductForm = ({
 }) => {
   const [present] = useIonAlert();
 
+  const productsName = productsArray.map((product) => product.name);
+
   const readFromDatabase = () => {
     const productsRef = ref(db, 'users/' + uid + '/products/');
     let productsData;
@@ -39,11 +41,17 @@ const AddProductForm = ({
         cssClass: 'my-css',
         header: 'Alert',
         message: 'Please add a product name!',
-        buttons: ['Cancel', { text: 'Ok', handler: (d) => console.log('ok pressed') }],
+        buttons: [{ text: 'Ok', handler: (d) => console.log('ok pressed') }],
         onDidDismiss: (e) => console.log('did dismiss'),
       });
-    } else if (productsArray.includes(name)) {
-      return <IonAlert>Product already exists!</IonAlert>;
+    } else if (productsName.includes(name)) {
+      present({
+        cssClass: 'my-css',
+        header: 'Alert',
+        message: 'Name already exists! Please provide a different one :)',
+        buttons: [{ text: 'Ok', handler: (d) => console.log('ok pressed') }],
+        onDidDismiss: (e) => console.log('did dismiss'),
+      });
     } else {
       const productData = { name, description, opened, pao, volume, price };
       const newProductKey = push(child(ref(db), 'products')).key;
