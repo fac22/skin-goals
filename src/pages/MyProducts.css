@@ -7,7 +7,7 @@
   --soft-yellow: #eeb82e;
 }
 
-.cream-wrapper {
+/* .cream-wrapper {
   max-width: 250px;
   padding: 1rem;
   position: relative;
@@ -15,18 +15,18 @@
   padding: 3px;
 
   border-radius: 8px;
-}
+} */
 
 .cream {
-  background: #121212;
-  color: white;
+  /* background: #121212;
+  color: white; */
   padding: 2rem;
 
   /* padding: 3rem; */
 
-  /* border: 1px solid var(--soft-yellow); */
+  border: 1px solid var(--light-veraman);
   border-radius: 8px;
-  box-shadow: 2px 3px 5px rgba(177, 151, 68, 0.5);
+  box-shadow: 2px 3px 5px rgba(78, 202, 165, 0.5);
 
   transition: transform 0.3s;
 }
