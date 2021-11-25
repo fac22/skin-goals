@@ -8,7 +8,7 @@ const ProductListItem = ({ product, index }) => {
       {(provided) => (
         <IonItem {...provided.draggableProps} ref={provided.innerRef}>
           <IonLabel>{product.name}</IonLabel>
-          <IonIcon icon={reorderThreeOutline} {...provided.dragHandleProps} />
+          <IonIcon icon={reorderThreeOutline} color="add-btn" {...provided.dragHandleProps} />
         </IonItem>
       )}
     </Draggable>

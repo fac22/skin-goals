@@ -3,6 +3,7 @@ import { DragDropContext } from 'react-beautiful-dnd';
 import { IonButton, IonInput } from '@ionic/react';
 import { push, child, ref, update } from '@firebase/database';
 import { db } from '../firebase';
+import './RoutineBuilder.css';
 
 // import ProductCarousel from '../components/ProductCarousel';
 import RoutineList from './RoutineList';
@@ -140,7 +141,11 @@ const RoutineBuilder = ({ products, setModal, uid }) => {
           /> */}
         <RoutineList key={productColumn.id} column={productColumn} products={productColumnProducts} />
         <h2>Routine</h2>
-        <IonInput placeholder="Enter routine name" onIonChange={(e) => setNewRoutineName(e.detail.value)}></IonInput>
+        <IonInput
+          color="primary"
+          placeholder="Enter routine name"
+          onIonChange={(e) => setNewRoutineName(e.detail.value)}
+        ></IonInput>
         <RoutineList key={routineColumn.id} column={routineColumn} products={routineColumnProducts} />
       </DragDropContext>
       <IonButton
