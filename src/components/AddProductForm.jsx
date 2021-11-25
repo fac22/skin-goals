@@ -75,7 +75,7 @@ const AddProductForm = ({
       <IonList>
         <IonItem>
           <IonLabel position="floating">Product Name</IonLabel>
-          <IonInput value={name} placeholder="Product name" onIonChange={(e) => setName(e.detail.value)} />
+          <IonInput data-testid='inputName' value={name} placeholder="Product name" onIonChange={(e) => setName(e.detail.value)} />
         </IonItem>
 
         <IonItem>
