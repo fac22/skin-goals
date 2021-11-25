@@ -1,12 +1,8 @@
-import { IonList, IonItem, IonLabel, IonInput, IonTextarea, IonButton, IonContent } from '@ionic/react';
+import { IonList, IonItem, IonLabel, IonInput, IonTextarea, IonButton, IonContent, useIonAlert } from '@ionic/react';
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { db } from '../firebase';
 import { ref, set, onValue, push, child, update } from 'firebase/database';
-
-import creamsArr from '../creams-data.js';
-
-let productsIdx = 0;
 
 const AddProductForm = ({
   name,
@@ -24,7 +20,12 @@ const AddProductForm = ({
   formModal,
   setFormModal,
   uid,
+  productsArray,
 }) => {
+  const [present] = useIonAlert();
+
+  const productsName = productsArray.map((product) => product.name);
+
   const readFromDatabase = () => {
     const productsRef = ref(db, 'users/' + uid + '/products/');
     let productsData;
@@ -35,15 +36,39 @@ const AddProductForm = ({
   };
 
   const writeToDatabase = (name, description, opened, pao, volume, price) => {
-    const productData = { name, description, opened, pao, volume, price };
-    const newProductKey = push(child(ref(db), 'products')).key;
-    productData.id = newProductKey;
+    if (name === '') {
+      present({
+        cssClass: 'my-css',
+        header: 'Alert',
+        message: 'Please add a product name!',
+        buttons: [{ text: 'Ok', handler: (d) => console.log('ok pressed') }],
+        onDidDismiss: (e) => console.log('did dismiss'),
+      });
+    } else if (productsName.includes(name)) {
+      present({
+        cssClass: 'my-css',
+        header: 'Alert',
+        message: 'Name already exists! Please provide a different one :)',
+        buttons: [{ text: 'Ok', handler: (d) => console.log('ok pressed') }],
+        onDidDismiss: (e) => console.log('did dismiss'),
+      });
+    } else {
+      const productData = { name, description, opened, pao, volume, price };
+      const newProductKey = push(child(ref(db), 'products')).key;
+      productData.id = newProductKey;
 
-    const updates = {};
-    updates[`/users/${uid}/products/${newProductKey}`] = productData;
+      const updates = {};
+      updates[`/users/${uid}/products/${newProductKey}`] = productData;
 
-    return update(ref(db), updates);
+      return update(ref(db), updates);
+    }
   };
+
+  // const checkLength = (str) => {
+  //   if (str === '') {
+  //     return <IonAlert>Please enter a name!</IonAlert>;
+  //   }
+  // };
 
   return (
     <IonContent fullscreen>
@@ -90,6 +115,7 @@ const AddProductForm = ({
         onClick={async (e) => {
           e.preventDefault();
           // productsIdx = await readFromDatabase().length;
+          // await checkLength(name);
           await writeToDatabase(name, description, opened, pao, volume, price);
           setFormModal({ isOpen: false });
         }}
