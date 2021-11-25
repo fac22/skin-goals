@@ -29,24 +29,49 @@ How did you decide what features were important?
 ## Requirement analysis
 
 - We are using the `Ionic` framework, which provides semantic HTML elements. This should make our application easily readable by screen-readers.
+- Regarding legal or regulatory requirements: we are asking our users for general data, like name, email address, passwords etc. This data helps our application provide personalised access to the app, as well as information specific to their needs.
 
-## Project learnings
-### Routing in `Ionic`
-- The `Ionic` framework relies on the native `React` router. 
-- The `<IonReactRouter>` wraps the `<Route>` elements.
+## Project learnings 📚
 
-### Coming up...
-- Drag & Drop
-- CSS 
-- State management 
+- Our team collaborated effectively for the most part, we shared all our findings and exchanged ideas on different development stages.
+- In hindsight, we could have taken more breaks.
+- We could have also spent more time researching spikes, which we did, but not to the extent we would have liked.
 
 ## Research and findings
 
+### Routing in `Ionic`
+
+- The `Ionic` framework relies on the native `React` router.
+- The `<IonReactRouter>` wraps the `<Route>` elements.
+
+### Firebase 🔥
+
+- How to create a new project and connect it to our repository.
+- Authentication - sign-up and log-in new new users.
+- Read and store to database, based on the structure we decided to use to our data (JSON file).
+
+### Coming up...
+
+- Drag & Drop
+- CSS
+- State management
+
+---
+
 ## Project outcomes
 
-## Recommendations and conclusions
+## Recommendations and conclusions 🧶
 
-## Software Development Lifecycle stages
+### What we want to implement next ▶️
+
+- Adding editing option in all pages, so the user can modify their data.
+- Adding a calendar page, where we can access all routines based on creation date.
+- Implement the logic behind the `Rules` tab, so it can provide additional functionality (prevent the user from adding conflicting products to their routines)
+- Adding a sharing option
+
+We consider our project a success, as we delivered value for our shareholders (Adriana).
+
+## Software Development Lifecycle stages 🌀
 
 - ### Planning
 - ### Analysis
