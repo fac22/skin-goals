@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   IonCard,
   IonCardContent,
@@ -14,7 +13,7 @@ const HomeFirstCard = ({ user }) => {
   return (
     <IonCard>
       <IonCardHeader>
-        <IonCardSubtitle>Hello {user.email}</IonCardSubtitle>
+        <IonCardSubtitle>Hello {user.name}</IonCardSubtitle>
         <IonCardTitle>
           Great skin is not simply a matter of DNA — your daily habits, in fact, have a big impact on what you see in
           the mirror.
