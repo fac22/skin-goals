@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
-
-import { Redirect, Route } from 'react-router-dom';
-import { IonApp, IonIcon, IonLabel, IonRouterOutlet, IonTabBar, IonTabButton, IonTabs } from '@ionic/react';
-import { IonReactRouter } from '@ionic/react-router';
-import { home, ellipse, fileTrayFullOutline } from 'ionicons/icons';
+import { IonApp } from '@ionic/react';
 import { auth } from './firebase';
 import { onAuthStateChanged } from '@firebase/auth';
+import { db } from './firebase';
+import { ref, onValue } from '@firebase/database';
 
 import PrivateRoutes from './components/PrivateRoutes';
 import PublicRoutes from './components/PublicRoutes';
@@ -33,6 +31,13 @@ const App = () => {
   const [user, setUser] = useState({});
 
   onAuthStateChanged(auth, (currentUser) => {
+    if (currentUser) {
+      const nameRef = ref(db, 'users/' + currentUser.uid + '/name');
+      onValue(nameRef, (snapshot) => {
+        const name = snapshot.val();
+        currentUser.name = name;
+      });
+    }
     setUser(currentUser);
   });
 

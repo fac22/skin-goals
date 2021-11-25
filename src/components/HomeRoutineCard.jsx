@@ -8,17 +8,16 @@ import {
   IonLabel,
   IonList,
 } from '@ionic/react';
-import React from 'react';
 
 const HomeRoutineCard = ({ user, routines, products }) => {
   return (
     <IonCard>
       <IonCardHeader>
-        <IonCardSubtitle>Hello {user.email}</IonCardSubtitle>
+        <IonCardSubtitle>Hello {user.name}</IonCardSubtitle>
         <IonCardTitle>Your last routine:</IonCardTitle>
       </IonCardHeader>
       <IonCardContent>
-        {routines.map((routine) => (
+        {[routines[routines.length - 1]].map((routine) => (
           <IonList>
             <IonItem>
               <IonLabel>
