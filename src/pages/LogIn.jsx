@@ -14,10 +14,15 @@ import {
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase';
 import React, { useState } from 'react';
+import UserErrorCard from '../components/UserErrorCard';
 
 const LogIn = () => {
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
+  const [error, setError] = useState({
+    message: "",
+    hasError: false
+  })
   // const history = useHistory();
 
   // const goHome = () => {
@@ -28,9 +33,21 @@ const LogIn = () => {
     try {
       const user = await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
     } catch (error) {
-      console.log(error.message);
+      setError({
+        message: "Incorrect Email or Password.",
+        hasError: true
+      })
     }
   };
+
+  //handles removing the error message
+  const exitError = () => {
+    setError({
+      message: "",
+      hasError: false
+    })
+  }
+
   return (
     <IonPage>
       <IonHeader>
@@ -39,6 +56,7 @@ const LogIn = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding">
+        {error.hasError ? <UserErrorCard message={error.message} exitHandler={exitError} /> : null}
         <IonList>
           <IonItem>
             <IonLabel position="floating">Email Address</IonLabel>
